@@ -1,0 +1,8 @@
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(run, Some(d8c2dd85-a4bb-4ac9-b11d-c00607bb4660), Some(CommandSource(console0)))[0m
+[0m[[0m[0mdebug[0m] [0m[0mEvaluating tasks: Compile / run[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning task... Cancel: Signal, check cycles: false, forcegc: true[0m
+[0m[[0m[0minfo[0m] [0m[0mcompiling 1 Java source to /home/andreas/git/Lab1-PGF/src/game/target/scala-3.1.1/classes ...[0m
+[0m[[0m[31merror[0m] [0m[0m/home/andreas/git/Lab1-PGF/src/game/TakePinsGame.java:79:1: class, interface, or enum expected[0m
+[0m[[0m[31merror[0m] [0m[0m(Compile / [31mcompileIncremental[0m) javac returned non-zero exit code[0m
+[0m[[0m[31merror[0m] [0m[0mTotal time: 1 s, completed Jan 25, 2022, 10:36:18 AM[0m
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(shell, None, None)[0m

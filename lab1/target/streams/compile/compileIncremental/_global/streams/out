@@ -1,30 +1,30 @@
 [0m[[0m[0mdebug[0m] [0m[0m[zinc] IncrementalCompile -----------[0m
 [0m[[0m[0mdebug[0m] [0m[0mIncrementalCompile.incrementalCompile[0m
-[0m[[0m[0mdebug[0m] [0m[0mprevious = Stamps for: 5 products, 5 sources, 0 libraries[0m
-[0m[[0m[0mdebug[0m] [0m[0mcurrent source = Set(${BASE}/TakePinsGame.java, ${BASE}/Board.java, ${BASE}/HumanPlayer.java, ${BASE}/ComputerPlayer.java, ${BASE}/Player.java)[0m
-[0m[[0m[0mdebug[0m] [0m[0m> initialChanges = InitialChanges(Changes(added = Set(), removed = Set(), changed = Set(${BASE}/TakePinsGame.java), unmodified = ...),Set(),Set(),API Changes: Set())[0m
+[0m[[0m[0mdebug[0m] [0m[0mprevious = Stamps for: 6 products, 6 sources, 0 libraries[0m
+[0m[[0m[0mdebug[0m] [0m[0mcurrent source = Set(${BASE}/TakePinsGame.java, ${BASE}/Board.java, ${BASE}/HumanPlayer.java, ${BASE}/ComputerPlayer.java, ${BASE}/Player.java, ${BASE}/UserInterface.java)[0m
+[0m[[0m[0mdebug[0m] [0m[0m> initialChanges = InitialChanges(Changes(added = Set(), removed = Set(), changed = Set(${BASE}/TakePinsGame.java, ${BASE}/HumanPlayer.java), unmodified = ...),Set(),Set(),API Changes: Set())[0m
 [0m[[0m[0mdebug[0m] [0m[0m[0m
 [0m[[0m[0mdebug[0m] [0m[0mInitial source changes:[0m
 [0m[[0m[0mdebug[0m] [0m[0m	removed: Set()[0m
 [0m[[0m[0mdebug[0m] [0m[0m	added: Set()[0m
-[0m[[0m[0mdebug[0m] [0m[0m	modified: Set(${BASE}/TakePinsGame.java)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	modified: Set(${BASE}/TakePinsGame.java, ${BASE}/HumanPlayer.java)[0m
 [0m[[0m[0mdebug[0m] [0m[0mInvalidated products: Set()[0m
 [0m[[0m[0mdebug[0m] [0m[0mExternal API changes: API Changes: Set()[0m
 [0m[[0m[0mdebug[0m] [0m[0mModified binary dependencies: Set()[0m
-[0m[[0m[0mdebug[0m] [0m[0mInitial directly invalidated classes: Set(game.TakePinsGame)[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial directly invalidated classes: Set(game.TakePinsGame, game.HumanPlayer)[0m
 [0m[[0m[0mdebug[0m] [0m[0mSources indirectly invalidated by:[0m
 [0m[[0m[0mdebug[0m] [0m[0m	product: Set()[0m
 [0m[[0m[0mdebug[0m] [0m[0m	binary dep: Set()[0m
 [0m[[0m[0mdebug[0m] [0m[0m	external source: Set()[0m
-[0m[[0m[0mdebug[0m] [0m[0mAll initially invalidated classes: Set(game.TakePinsGame)[0m
-[0m[[0m[0mdebug[0m] [0m[0mAll initially invalidated sources:Set(${BASE}/TakePinsGame.java)[0m
-[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: game.TakePinsGame[0m
+[0m[[0m[0mdebug[0m] [0m[0mAll initially invalidated classes: Set(game.TakePinsGame, game.HumanPlayer)[0m
+[0m[[0m[0mdebug[0m] [0m[0mAll initially invalidated sources:Set(${BASE}/TakePinsGame.java, ${BASE}/HumanPlayer.java)[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: game.TakePinsGame, game.HumanPlayer[0m
 [0m[[0m[0mdebug[0m] [0m[0mcompilation cycle 1[0m
-[0m[[0m[0minfo[0m] [0m[0mcompiling 1 Java source to /home/andreas/git/pgf-workspace/lab1/target/scala-3.1.0/classes ...[0m
-[0m[[0m[0mdebug[0m] [0m[0mAttempting to call com.sun.tools.javac.api.JavacTool@7471f8a1 directly...[0m
-[0m[[0m[0mdebug[0m] [0m[0mJava compilation took 0.668142003 s[0m
-[0m[[0m[0mdebug[0m] [0m[0mJava analysis took 0.121202831 s[0m
-[0m[[0m[0mdebug[0m] [0m[0mJava compilation + analysis took 0.80298627 s[0m
+[0m[[0m[0minfo[0m] [0m[0mcompiling 2 Java sources to /home/andreas/git/Lab1-PGF/src/alternative/target/scala-3.1.1/classes ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mAttempting to call com.sun.tools.javac.api.JavacTool@3fee284b directly...[0m
+[0m[[0m[0mdebug[0m] [0m[0mJava compilation took 0.25561569 s[0m
+[0m[[0m[0mdebug[0m] [0m[0mJava analysis took 0.043715913 s[0m
+[0m[[0m[0mdebug[0m] [0m[0mJava compilation + analysis took 0.303565531 s[0m
 [0m[[0m[0mdebug[0m] [0m[0mdone compiling[0m
 [0m[[0m[0mdebug[0m] [0m[0mNew invalidations:[0m
 [0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: [0m

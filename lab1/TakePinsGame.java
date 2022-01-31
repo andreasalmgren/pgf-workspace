@@ -1,40 +1,30 @@
 package game;
 import java.util.Scanner;
 import java.util.Random;
+import javax.swing.JOptionPane;
 
 public class TakePinsGame {
 	public static void main(String[] args) {
+		JOptionPane.showMessageDialog(null, "human will now play a game of pins against computer.");
 		Board board = new Board();
 		board.setUp(10);
-		Player human = new HumanPlayer();
-		human.Player("Råbert");
-		ComputerPlayer computer = new ComputerPlayer();
-		computer.Player("Råbot");
-		Random rand = new Random();
+		//Player turtle = new Turtle();
+	    Player human = new HumanPlayer();
+		human.Player("human");
+		Player computer = new ComputerPlayer();
+		computer.Player("computer");
 		
-		while (board.noPins > 0) {
-			int y;
-			//* int x */
-			System.out.print("How many pins do you want to take?(1 or 2) or face the endless wrath of MökMonstret: \n> ");
-			Scanner scanner = new Scanner(System.in);
-			String input = scanner.nextLine();
-			int number = 0;
-
-			while (true) {
-				try {
-					number = Integer.parseInt(input);
-					break; 
-				} catch (Exception e) {
-					System.out.println("Invalid data type");
-				}
-				System.out.print("How many pins do you want to take?(1 or 2) or face the endless wrath of MökMonstret: \n> ");
-				input = scanner.nextLine();
+		while (true) {
+			UserInterface.printMessage("How many pins do you want to take? (1 or 2) or face the endless wrath of MökMonstret!");
+			int x = UserInterface.askForInt("Gimme pins");
+			if (x == -2) {
+				System.exit(0);
 			}
-			
-			human.takePins(board, number);
-			y = rand.nextInt(2) + 1;
-			computer.takePins(board, y);
+			int y = 0;
+			//System.out.println("human chose TakePinsGame:" + x);
+			human.takePins(board, x);
+			//turtle.takePins(board, x);
+		    computer.takePins(board, y);
 		}
-		System.out.println("Game Over!");
 	}
 }

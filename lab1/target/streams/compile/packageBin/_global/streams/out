@@ -1,15 +1,17 @@
-[0m[[0m[0mdebug[0m] [0m[0mPackaging /home/andreas/git/pgf-workspace/lab1/target/scala-3.1.0/lab1_3-0.1.0-SNAPSHOT.jar ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mPackaging /home/andreas/git/Lab1-PGF/src/alternative/target/scala-3.1.1/alternative_3-0.1.0-SNAPSHOT.jar ...[0m
 [0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
 [0m[[0m[0mdebug[0m] [0m[0m	game[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /home/andreas/git/pgf-workspace/lab1/target/scala-3.1.0/classes/game[0m
-[0m[[0m[0mdebug[0m] [0m[0m	game/ComputerPlayer.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /home/andreas/git/pgf-workspace/lab1/target/scala-3.1.0/classes/game/ComputerPlayer.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	game/TakePinsGame.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /home/andreas/git/pgf-workspace/lab1/target/scala-3.1.0/classes/game/TakePinsGame.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	game/Player.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /home/andreas/git/pgf-workspace/lab1/target/scala-3.1.0/classes/game/Player.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	game/Board.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /home/andreas/git/pgf-workspace/lab1/target/scala-3.1.0/classes/game/Board.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/andreas/git/Lab1-PGF/src/alternative/target/scala-3.1.1/classes/game[0m
 [0m[[0m[0mdebug[0m] [0m[0m	game/HumanPlayer.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /home/andreas/git/pgf-workspace/lab1/target/scala-3.1.0/classes/game/HumanPlayer.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/andreas/git/Lab1-PGF/src/alternative/target/scala-3.1.1/classes/game/HumanPlayer.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	game/Player.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/andreas/git/Lab1-PGF/src/alternative/target/scala-3.1.1/classes/game/Player.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	game/TakePinsGame.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/andreas/git/Lab1-PGF/src/alternative/target/scala-3.1.1/classes/game/TakePinsGame.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	game/ComputerPlayer.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/andreas/git/Lab1-PGF/src/alternative/target/scala-3.1.1/classes/game/ComputerPlayer.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	game/Board.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/andreas/git/Lab1-PGF/src/alternative/target/scala-3.1.1/classes/game/Board.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	game/UserInterface.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/andreas/git/Lab1-PGF/src/alternative/target/scala-3.1.1/classes/game/UserInterface.class[0m
 [0m[[0m[0mdebug[0m] [0m[0mDone packaging.[0m
