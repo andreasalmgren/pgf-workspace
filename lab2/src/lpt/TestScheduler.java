@@ -10,7 +10,7 @@ public class TestScheduler {
 			m[i] = new Machine(i + 1);
 		}
 		
-		ArrayList<Job> jobList = new ArrayList<Job>();
+		ArrayList<Job> jobList = new ArrayList<>();
 		String [] names = {"j1", "j2", "j3", "j4", "j5", "j6", "j7"};
 		int[] times = {2, 14, 4, 16, 6, 5, 3};
 		for (int i = 0; i < names.length; i++) {
