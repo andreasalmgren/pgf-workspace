@@ -6,7 +6,7 @@ public class Machine {
 	private int nbr;
 	private ArrayList<Job> jobs;
 	private int scheduledTime;
-	
+
 	/** Skapar maskin nr nbr. */
 	public Machine(int nbr) {
 		this.nbr = nbr;
@@ -19,7 +19,7 @@ public class Machine {
 		jobs.add(j);
 		scheduledTime = j.getTime();
 	}
-	
+
 	/** Tar bort alla jobb från maskinen. */
 	public void clearJobs() {
 		jobs.clear();
@@ -27,7 +27,7 @@ public class Machine {
 	}
 
 	/** Tar bort och returnerar nästa jobb som maskinen ska utföra. 
-	 	Returnerar null om maskinen inte har några jobb. */
+	 Returnerar null om maskinen inte har några jobb. */
 	public Job getNextJob() {
 		if (jobs.isEmpty()) {
 			return null;
@@ -35,17 +35,17 @@ public class Machine {
 		scheduledTime -= jobs.get(0).getTime();
 		return jobs.remove(0);
 	}
-	
+
 	/** Tar reda på den totala schemalagda tiden för 
-	    maskinens jobb. */
+	 maskinens jobb. */
 	public int getScheduledTime() {
 		return scheduledTime;
 	}
-	
+
 	/** Returnerar en sträng som innehåller maskinens nr,  
-	   total schemalagd tid samt maskinens
-       schemalagda jobb inom [] med kommatecken mellan.
-       Exempel: 2 17 [j2 (14), j7 (3)] */
+	 total schemalagd tid samt maskinens
+	 schemalagda jobb inom [] med kommatecken mellan.
+	 Exempel: 2 17 [j2 (14), j7 (3)] */
 	public String toString() {
 		StringBuilder b = new StringBuilder();
 		b.append("Maskin ");
@@ -64,5 +64,5 @@ public class Machine {
 		}
 		b.append(']');
 		return b.toString();
-	}	
+	}
 }

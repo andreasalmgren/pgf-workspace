@@ -1,0 +1,17 @@
+F1
+
+Exception in thread "main" java.lang.NullPointerException
+	at lpt.Scheduler.machineWithLeastToDo(Scheduler.java:19)
+	at lpt.Scheduler.makeSchedule(Scheduler.java:34)
+	at lpt.TestScheduler.main(TestScheduler.java:21)
+
+tempJobList.sort((j1, j2) -> j2.getTime() - j1.getTime());
+
+F4
+
+a) 20 ggr. Ja vi nkan vara säkra.
+b) 10 (inga dubbletter). Nej, inte i HashSet
+c) String, Integer. 12, 7 skrivs ut
+d) containsKey();
+
+
