@@ -5,7 +5,6 @@ package textproc;
  * presentera ett resultat med statistik av något slag.
  */
 public interface TextProcessor {
-
 	/** Anropas när ett ord lästs in. Metoden ska uppdatera statistiken därefter. */
 	void process(String w);
 
@@ -13,5 +12,5 @@ public interface TextProcessor {
 	 * Anropas när samtliga ord i sekvensen lästs in. Metoden ska skriva ut
 	 * en sammanställning av statistiken.
 	 */
-	void report();
+	void report(); 
 }

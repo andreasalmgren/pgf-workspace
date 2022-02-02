@@ -1,5 +1,7 @@
 package textproc;
 
+import java.util.Objects;
+
 public class SingleWordCounter implements TextProcessor {
 	private String word;
 	private int n;
@@ -10,7 +12,7 @@ public class SingleWordCounter implements TextProcessor {
 	}
 
 	public void process(String w) {
-		if (w == word) {
+		if (word.equals(w)) {
 			n++;
 		}
 	}
