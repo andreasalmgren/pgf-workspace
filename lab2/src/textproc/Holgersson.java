@@ -13,6 +13,7 @@ public class Holgersson {
 	public static Set<String> stopwords = new HashSet<>();
 
 	public static void main(String[] args) throws FileNotFoundException {
+		long t0 = System.nanoTime();
 		System.out.println(new File(".").getAbsolutePath());
 		Scanner t = new Scanner(new File("undantagsord.txt"));
 		while(t.hasNext()){
@@ -29,16 +30,17 @@ public class Holgersson {
 
 		while (s.hasNext()) {
 			String word = s.next().toLowerCase();
-
 			p.process(word);
 			q.process(word);
 			r.process(word);
 		}
 
 		s.close();
-
 		p.report();
 		q.report();
 		r.report();
+		long t1 = System.nanoTime();
+		System.out.println("tid: " + (t1 - t0) / 1000000.0 + " ms");
+		//~ 350 ms
 	}
 }

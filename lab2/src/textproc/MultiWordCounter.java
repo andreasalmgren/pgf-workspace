@@ -4,7 +4,6 @@ import java.util.*;
 public class MultiWordCounter implements TextProcessor {
     private Map<String, Integer> wordmap = new HashMap<>();
 
-
     public MultiWordCounter(String[] words){
         for(String s : words){
             wordmap.put(s, 0);
