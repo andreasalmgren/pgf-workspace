@@ -4,6 +4,7 @@ import java.util.Scanner;
 import java.util.*;
 import java.io.File;
 
+
 public class GeneralWordCounter implements TextProcessor {
     private Map<String, Integer> wordmap = new HashMap<>();
     private Set<String> dontCount = new HashSet<>();
@@ -20,10 +21,12 @@ public class GeneralWordCounter implements TextProcessor {
     }
 
     public void report(){
-        for (var entry : wordmap.entrySet()) {
-            if(entry.getValue() >= 200){
-                result.put(entry.getKey(), entry.getValue());
-        }
+    Set<Map.Entry<String, Integer>> wordSet = wordmap.entrySet();
+    List<Map.Entry<String, Integer>> wordList = new ArrayList<>(wordSet);
+    wordList.sort((p1, p2) -> p2.getValue() - p1.getValue());
+    //wordList.sort((p1, p2) -> p2.getKey().compareTo((p1.getKey())));
+    for(int i = 0; i < 5; i++){
+        System.out.println(wordList.get(i));
         }
         System.out.println(result);
     }

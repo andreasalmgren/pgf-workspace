@@ -10,27 +10,14 @@ public class Holgersson {
 			"halland", "hälsingland", "härjedalen", "jämtland", "lappland", "medelpad", "närke", "skåne", "småland",
 			"södermanland", "uppland", "värmland", "västerbotten", "västergötland", "västmanland", "ångermanland",
 			"öland", "östergötland" };
-	public static Set<String> stopwords;
-	public static Scanner scan;
-
-	static {
-		try {
-			scan = new Scanner(new File("undantagsord.txt"));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public Holgersson() throws FileNotFoundException {
-	}
-
+	public static Set<String> stopwords = new HashSet<>();
 
 	public static void main(String[] args) throws FileNotFoundException {
-		stopwords = new HashSet<>();
-		while(scan.hasNext()){
-			stopwords.add(scan.next());
+		System.out.println(new File(".").getAbsolutePath());
+		Scanner t = new Scanner(new File("undantagsord.txt"));
+		while(t.hasNext()){
+			stopwords.add(t.next());
 		}
-
 
 		TextProcessor p = new SingleWordCounter("nils");
 		TextProcessor q = new SingleWordCounter("norge");
