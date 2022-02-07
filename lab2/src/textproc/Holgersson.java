@@ -41,6 +41,15 @@ public class Holgersson {
 		r.report();
 		long t1 = System.nanoTime();
 		System.out.println("tid: " + (t1 - t0) / 1000000.0 + " ms");
-		//~ 350 ms
+		//~ 600 ms
+		//med treeMap ~700 ms
+		// nils: 75
+		//norge: 1
+		//pojken=1019
+		//vildgässen=298
+		//akka=287
+		//skogen=247
+		//hörde=205
+		// spelar ingen roll för just detta program ordningen som skrivs ut om TreeMap används
 	}
 }

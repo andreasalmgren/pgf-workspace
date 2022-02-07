@@ -4,10 +4,10 @@ import java.util.*;
 
 public class GeneralWordCounter implements TextProcessor {
     private Map<String, Integer> wordmap = new HashMap<>();
-    // private Map<String, Integer> wordmap = new TreeMap<>();
+    //private Map<String, Integer> wordmap = new TreeMap<>();
     private Set<String> dontCount = new HashSet<>();
     private Map<String, Integer> result = new HashMap<>();
-    // private Map<String, Integer> result = new TreeMap<>();
+    //private Map<String, Integer> result = new TreeMap<>();
 
     public GeneralWordCounter(Set<String> set){
         this.dontCount = set;
