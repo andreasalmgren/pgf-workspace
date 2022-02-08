@@ -25,8 +25,6 @@ public class BookReaderApplication {
         TextProcessor q = new SingleWordCounter("norge");
         GeneralWordCounter r = new GeneralWordCounter(stopwords);
 
-        BookReaderController b = new BookReaderController(r);
-
         //b.createWindow(r, "BookReader", 100, 300);
 
         Scanner s = new Scanner(new File("nilsholg.txt"));
@@ -46,6 +44,6 @@ public class BookReaderApplication {
         r.report();
         long t1 = System.nanoTime();
         System.out.println("tid: " + (t1 - t0) / 1000000.0 + " ms");
-
+        BookReaderController b = new BookReaderController(r);
     }
 }
