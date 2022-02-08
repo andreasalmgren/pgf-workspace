@@ -1,5 +1,6 @@
 package textproc;
 import javax.swing.*;
+import java.util.List;
 import java.util.Map;
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -19,6 +20,13 @@ public class BookReaderController {
         // Creating a new buttons
         JButton Alphabetic = new JButton("Alphabetic");
         JButton Frequency = new JButton("Frequency");
+
+        Alphabetic.addActionListener(event -> {
+            System.out.println("pressed");
+        });
+        Frequency.addActionListener(event -> {
+
+        });
 
         // Creating a panel to add buttons
         JPanel p = new JPanel();
