@@ -21,12 +21,7 @@ public class BookReaderController {
         JButton Alphabetic = new JButton("Alphabetic");
         JButton Frequency = new JButton("Frequency");
 
-        Alphabetic.addActionListener(event -> {
-            System.out.println("pressed");
-        });
-        Frequency.addActionListener(event -> {
-
-        });
+        SortedListModel<Map.Entry<String, Integer>> listmodel = new SortedListModel(counter.getWordList());
 
         // Creating a panel to add buttons
         JPanel p = new JPanel();
@@ -36,8 +31,8 @@ public class BookReaderController {
         p.add(Alphabetic);
         p.add(Frequency);
 
-        SortedListModel<Map.Entry<String, Integer>> listmodel = new SortedListModel(counter.getWordList());
-        JList listvy = new JList(listmodel);
+
+        JList<Map.Entry<String, Integer>> listvy = new JList<>(listmodel);
         pane.setLayout(new BorderLayout());
         JScrollPane scrollPane = new JScrollPane(listvy);
         // Adding scrollPane to frame
@@ -48,5 +43,14 @@ public class BookReaderController {
 
         frame.pack();
         frame.setVisible(true);
+
+        Alphabetic.addActionListener(e -> {
+            listmodel.sort((p1, p2) -> p2.getKey().compareTo(p1.getKey()));
+        });
+        Frequency.addActionListener(e -> {
+            listmodel.sort((p1, p2) -> p2.getValue() - p1.getValue());
+        });
+
+
     }
 }
