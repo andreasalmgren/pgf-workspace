@@ -44,6 +44,7 @@ public class BookReaderApplication {
         r.report();
         long t1 = System.nanoTime();
         System.out.println("tid: " + (t1 - t0) / 1000000.0 + " ms");
+
         BookReaderController b = new BookReaderController(r);
     }
 }
