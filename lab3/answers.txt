@@ -1,0 +1,4 @@
+addActionListener
+getText
+add(Component) 
+setSelectionBackground(Color selectionBackground)

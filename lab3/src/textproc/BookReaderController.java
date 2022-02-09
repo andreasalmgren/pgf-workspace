@@ -56,21 +56,26 @@ public class BookReaderController {
             listmodel.sort((p1, p2) -> p2.getValue() - p1.getValue());
         });
         Search.addActionListener(e -> {
-            Boolean a = false;
+            Boolean exist = false;
             String searchText = "";
             searchText = field.getText().trim().toLowerCase();
             for (int i = 0; i < listmodel.getSize(); i++) {
                 if (listmodel.getElementAt(i).getKey().equals(searchText)) {
-                    a = true;
+                    exist = true;
                     listvy.ensureIndexIsVisible(i);
                     listvy.setSelectedIndex(i);
                     break;
                 } else {
-                    a = false;
+                    exist = false;
                     //JOptionPane.showMessageDialog(null, "The word you searched for does not exist.");
                     //System.exit(0);
                     //break;
                 }
+            }
+            if (!exist && searchText.length() != 0) {
+                JOptionPane.showMessageDialog(pane, searchText + " does not exist in this list.");
+            } else if (!exist && searchText.length() == 0) {
+                JOptionPane.showMessageDialog(pane, "Field is empty");
             }
         });
     }
