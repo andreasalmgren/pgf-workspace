@@ -28,8 +28,8 @@ public class BookReaderController {
         JScrollPane scrollPane = new JScrollPane(listvy);
 
         // Creating buttons
-        JButton Alphabetic = new JButton("Alphabetic");
-        JButton Frequency = new JButton("Frequency");
+        JRadioButton Alphabetic = new JRadioButton("Alphabetic");
+        JRadioButton Frequency = new JRadioButton("Frequency");
         JButton Search = new JButton("Search");
         // Creating a panel to add buttons
         JPanel p = new JPanel();
@@ -67,14 +67,11 @@ public class BookReaderController {
                     break;
                 } else {
                     exist = false;
-                    //JOptionPane.showMessageDialog(null, "The word you searched for does not exist.");
-                    //System.exit(0);
-                    //break;
                 }
             }
             if (!exist && searchText.length() != 0) {
                 JOptionPane.showMessageDialog(pane, searchText + " does not exist in this list.");
-            } else if (!exist && searchText.length() == 0) {
+            } else if (!exist) {
                 JOptionPane.showMessageDialog(pane, "Field is empty");
             }
         });
