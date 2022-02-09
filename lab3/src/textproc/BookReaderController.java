@@ -1,9 +1,13 @@
 package textproc;
 import javax.swing.*;
+import java.awt.event.ActionEvent;
 import java.util.List;
 import java.util.Map;
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.Point;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class BookReaderController {
     public BookReaderController(GeneralWordCounter counter) {
@@ -17,29 +21,30 @@ public class BookReaderController {
         // övriga komponenterna (listvy, knappar etc.) ska läggas till.
         Container pane = frame.getContentPane();
 
-        // Creating a new buttons
-        JButton Alphabetic = new JButton("Alphabetic");
-        JButton Frequency = new JButton("Frequency");
-
+        // Creating scrollPane
         SortedListModel<Map.Entry<String, Integer>> listmodel = new SortedListModel(counter.getWordList());
-
-        // Creating a panel to add buttons
-        JPanel p = new JPanel();
-
-        // Adding buttons and textfield to panel
-        // using add() method
-        p.add(Alphabetic);
-        p.add(Frequency);
-
-
         JList<Map.Entry<String, Integer>> listvy = new JList<>(listmodel);
         pane.setLayout(new BorderLayout());
         JScrollPane scrollPane = new JScrollPane(listvy);
-        // Adding scrollPane to frame
-        pane.add(scrollPane, BorderLayout.NORTH);
-        // Adding panel to frame
-        pane.add(p, BorderLayout.SOUTH);
 
+        // Creating buttons
+        JButton Alphabetic = new JButton("Alphabetic");
+        JButton Frequency = new JButton("Frequency");
+        JButton Search = new JButton("Search");
+        // Creating a panel to add buttons
+        JPanel p = new JPanel();
+        // Adding buttons to panel
+        p.add(Alphabetic);
+        p.add(Frequency);
+        p.add(Search);
+
+        // create JTextField with default text and columns
+        JTextField field = new JTextField("", 1);
+
+        // Adding stuff to frame
+        pane.add(scrollPane, BorderLayout.NORTH);
+        pane.add(field, BorderLayout.CENTER);
+        pane.add(p, BorderLayout.SOUTH);
 
         frame.pack();
         frame.setVisible(true);
@@ -50,7 +55,23 @@ public class BookReaderController {
         Frequency.addActionListener(e -> {
             listmodel.sort((p1, p2) -> p2.getValue() - p1.getValue());
         });
-
-
+        Search.addActionListener(e -> {
+            Boolean a = false;
+            String searchText = "";
+            searchText = field.getText().trim().toLowerCase();
+            for (int i = 0; i < listmodel.getSize(); i++) {
+                if (listmodel.getElementAt(i).getKey().equals(searchText)) {
+                    a = true;
+                    listvy.ensureIndexIsVisible(i);
+                    listvy.setSelectedIndex(i);
+                    break;
+                } else {
+                    a = false;
+                    //JOptionPane.showMessageDialog(null, "The word you searched for does not exist.");
+                    //System.exit(0);
+                    //break;
+                }
+            }
+        });
     }
 }
