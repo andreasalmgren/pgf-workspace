@@ -9,8 +9,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import queue_delegate.FifoQueue;
-//import queue_singlelinkedlist.FifoQueue;
+//import queue_delegate.FifoQueue;
+import queue_singlelinkedlist.FifoQueue;
 
 import java.util.NoSuchElementException;
 import java.util.Queue;
@@ -22,8 +22,8 @@ class TestFifoQueue {
 
 	@BeforeEach
 	void setUp() {
-		myIntQueue = new FifoQueue<Integer>();
-		myStringQueue = new FifoQueue<String>();
+		myIntQueue = new FifoQueue<>();
+		myStringQueue = new FifoQueue<>();
 	}
 
 	@AfterEach
