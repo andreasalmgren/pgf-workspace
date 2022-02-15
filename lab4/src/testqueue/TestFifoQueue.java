@@ -36,7 +36,7 @@ class TestFifoQueue {
 	 * Test if a newly created queue is empty.
 	 */
 	@Test
-	void testNewFifoQueue() {
+	 void testNewFifoQueue() {
 		assertTrue(myIntQueue.isEmpty(), "Wrong result from empty of queue");
 		assertEquals(0, myIntQueue.size(), "Wrong size of empty queue");
 	}
