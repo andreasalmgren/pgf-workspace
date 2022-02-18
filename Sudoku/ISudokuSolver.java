@@ -1,6 +1,6 @@
-package sudoku;
+package Sudoku;
 
-public interface SudokuSolver {
+public interface ISudokuSolver {
     /**
      * To be done
      */
@@ -30,7 +30,7 @@ public interface SudokuSolver {
     /**
      * Checks that all filled in digits follows the the sudoku rules.
      */
-    boolean isValid();
+    boolean isValid(int[][] board, int num, int row, int col);
 
     /**
      * To be done
