@@ -1,10 +1,11 @@
 package Sudoku;
 
-public interface ISudokuSolver {
+public interface SudokuSolver {
     /**
      * To be done
      */
-    boolean solve();
+    //boolean solve();
+    boolean solve(int[][] board);
 
     /**
      * Puts digit in the box row, col.

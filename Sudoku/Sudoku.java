@@ -1,32 +1,30 @@
 package Sudoku;
 
-public class Sudoku implements ISudokuSolver{
-
-
+public class Sudoku implements SudokuSolver {
 
     public static void main(String[] args) {
 
         Sudoku sudoku = new Sudoku();
 
-        if(sudoku.solve()) {
+        if(sudoku.solve(board)) {
             System.out.println("Yes");
         }
         else {
             System.out.println("No");
         }
-        sudoku.solve();
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[i].length; j++) {
-                System.out.print(board[i][j] + " ");
+        sudoku.solve(board);
+        for (int[] ints : board) {
+            for (int anInt : ints) {
+                System.out.print(anInt + " ");
             }
             System.out.println();
         }
     }
 
-    public static int gridSize = 9;
+    private static final int gridSize = 9;
 
-    static int[][] board = {
-            {1,0,0,0,0,0,0,0,0},
+    public static int[][] board = {
+            {0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0},
@@ -37,70 +35,57 @@ public class Sudoku implements ISudokuSolver{
             {0,0,0,0,0,0,0,0,0}
     };
 
-
-
-
-
-    private static boolean isNumInRow(int[][] board, int num, int row) {
-        boolean contains = false;
-        for(int i = 0; i < gridSize; i++) {
-            if(board[row][i] == num) {
-                contains = true;
+    private static boolean isNumInRow(int[][] board, int number, int row) {
+        for (int i = 0; i < gridSize; i++) {
+            if (board[row][i] == number) {
+                return true;
             }
         }
-        return contains;
+        return false;
     }
 
-    private static boolean isNumInCol(int[][] board, int num, int col) {
-        boolean contains = false;
-        for(int i = 0; i < gridSize; i++) {
-            if(board[i][col] == num) {
-                contains = true;
+    private static boolean isNumInCol(int[][] board, int number, int column) {
+        for (int i = 0; i < gridSize; i++) {
+            if (board[i][column] == number) {
+                return true;
             }
         }
-        return contains;
+        return false;
     }
 
-    private static boolean isNumInBox(int[][] board, int num, int row, int col) {
-        boolean contains = false;
-        int firstRow = row - row % 3;    // räkna ut första raden i rutan
-        int firstCol = col - col % 3;   // räkna ut första kolumnen
+    private static boolean isNumInBox(int[][] board, int number, int row, int column) {
+        int localBoxRow = row - row % 3; // räkna ut första raden i rutan
+        int localBoxColumn = column - column % 3; // räkna ut första kolumnen
 
-        for(int r = 0; r < firstRow + 3; r++) {         // gå igenom rutans 3 rader
-            for(int c = 0; c < firstCol + 3; c++) {    // gå igenom rutans 3 kolumner
-                if(board[r][c] == num) {
-                    contains = true;
+        for (int i = localBoxRow; i < localBoxRow + 3; i++) {  // gå igenom rutans 3 rader
+            for (int j = localBoxColumn; j < localBoxColumn + 3; j++) { // gå igenom rutans 3 kolumner
+                if (board[i][j] == number) {
+                    return true;
                 }
             }
         }
-        return contains;
+        return false;
     }
 
-    public boolean isValid(int[][] board, int num, int row, int col) {
-        return  !isNumInRow(board, num, row) &&
-                !isNumInCol(board, num, col) &&
-                !isNumInBox(board, num, row, col);
+    public boolean isValid(int[][] board, int number, int row, int column) {
+        return !isNumInRow(board, number, row) &&
+                !isNumInCol(board, number, column) &&
+                !isNumInBox(board, number, row, column);
     }
 
-    @Override
-    public boolean solve() {
-        return solve(0,0);
-    }
+    public boolean solve(int[][] board) {
+        for (int row = 0; row < gridSize; row++) {
+            for (int col = 0; col < gridSize; col++) {
+                if (board[row][col] == 0) {
+                    for (int numberToTry = 1; numberToTry <= gridSize; numberToTry++) {
+                        if (isValid(board, numberToTry, row, col)) {
+                            board[row][col] = numberToTry;
 
-
-    private boolean solve(int r, int c) {
-        for(int b = r; b < gridSize; b++) {
-            for(int d = c; d < gridSize; d++) {
-                if(board[b][d] == 0) {
-                    for(int testNum = 1; testNum <= gridSize; testNum++) {
-                        if(isValid(board, testNum, b, d)) {
-                            board[b][d] = testNum;
-                            solve(b+1, d+1);
-                            if(solve()) {
+                            if (solve(board)) {
                                 return true;
                             }
                             else {
-                                board[b][d] = 0;
+                                board[row][col] = 0;
                             }
                         }
                     }
@@ -115,6 +100,9 @@ public class Sudoku implements ISudokuSolver{
     public void add(int row, int col, int digit) {
         board[row][col] = digit;
     }
+
+
+
 
     @Override
     public void remove(int row, int col) {
