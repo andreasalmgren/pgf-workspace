@@ -1,25 +1,6 @@
 package Sudoku;
 
-public class Sudoku implements SudokuSolver {
-
-    public static void main(String[] args) {
-
-        Sudoku sudoku = new Sudoku();
-
-        if(sudoku.solve(board)) {
-            System.out.println("Yes");
-        }
-        else {
-            System.out.println("No");
-        }
-        sudoku.solve(board);
-        for (int[] ints : board) {
-            for (int anInt : ints) {
-                System.out.print(anInt + " ");
-            }
-            System.out.println();
-        }
-    }
+public class SudokuSolver implements InterfaceSudokuSolver {
 
     private static final int gridSize = 9;
 
@@ -35,31 +16,31 @@ public class Sudoku implements SudokuSolver {
             {0,0,0,0,0,0,0,0,0}
     };
 
-    private static boolean isNumInRow(int[][] board, int number, int row) {
+    private boolean isNumInRow(int[][] board, int number, int row) {
         for (int i = 0; i < gridSize; i++) {
-            if (board[row][i] == number) {
+            if (get(row, i) == number) {
                 return true;
             }
         }
         return false;
     }
 
-    private static boolean isNumInCol(int[][] board, int number, int column) {
+    private boolean isNumInCol(int[][] board, int number, int column) {
         for (int i = 0; i < gridSize; i++) {
-            if (board[i][column] == number) {
+            if (get(i, column) == number) {
                 return true;
             }
         }
         return false;
     }
 
-    private static boolean isNumInBox(int[][] board, int number, int row, int column) {
+    private boolean isNumInBox(int[][] board, int number, int row, int column) {
         int localBoxRow = row - row % 3; // räkna ut första raden i rutan
         int localBoxColumn = column - column % 3; // räkna ut första kolumnen
 
         for (int i = localBoxRow; i < localBoxRow + 3; i++) {  // gå igenom rutans 3 rader
             for (int j = localBoxColumn; j < localBoxColumn + 3; j++) { // gå igenom rutans 3 kolumner
-                if (board[i][j] == number) {
+                if (get(i, j) == number) {
                     return true;
                 }
             }
@@ -79,13 +60,13 @@ public class Sudoku implements SudokuSolver {
                 if (board[row][col] == 0) {
                     for (int numberToTry = 1; numberToTry <= gridSize; numberToTry++) {
                         if (isValid(board, numberToTry, row, col)) {
-                            board[row][col] = numberToTry;
+                            add(row, col, numberToTry);
 
                             if (solve(board)) {
                                 return true;
                             }
                             else {
-                                board[row][col] = 0;
+                               remove(row, col);
                             }
                         }
                     }
@@ -98,19 +79,20 @@ public class Sudoku implements SudokuSolver {
 
     @Override
     public void add(int row, int col, int digit) {
+        checkArgs(row, col, digit);
         board[row][col] = digit;
+
     }
-
-
-
 
     @Override
     public void remove(int row, int col) {
+        checkArgs(row, col);
         board[row][col] = 0;
     }
 
     @Override
     public int get(int row, int col) {
+        checkArgs(row, col);
         return board[row][col];
     }
 
@@ -145,6 +127,19 @@ public class Sudoku implements SudokuSolver {
     @Override
     public int[][] getMatrix() {
         return board;
+    }
+
+    /**
+     * @param args  Integers to compare to dimension
+     * Helper method to check that all arguments are within the dimension
+     */
+    private void checkArgs(int... args) {
+        for (int a : args) {
+            if (a > gridSize || a < 0) {
+                throw new IllegalArgumentException();
+            }
+
+        }
     }
 
 }

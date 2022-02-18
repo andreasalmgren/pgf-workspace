@@ -1,8 +1,10 @@
 package Sudoku;
 
-public interface SudokuSolver {
+public interface InterfaceSudokuSolver {
     /**
-     * To be done
+     * @param board     The board
+     * Tries to solve the sudoku recursively
+     * @return true if sudoku was solved
      */
     //boolean solve();
     boolean solve(int[][] board);
@@ -19,22 +21,30 @@ public interface SudokuSolver {
     void add(int row, int col, int digit);
 
     /**
-     * To be done
+     * @param row   The row
+     * @param col   The col
+     * Sets values in row, col to 0
      */
     void remove(int row, int col);
 
     /**
-     * To be done
+     * @param row   The row
+     * @param col   The col
+     * Fetches values from row, col
      */
     int get(int row, int col);
 
     /**
-     * Checks that all filled in digits follows the the sudoku rules.
+     * @param board     The board
+     * @param num       Number to check in row, col, box
+     * @param row       The row
+     * @param col       The col
+     * Checks that all filled in digits follows the sudoku rules.
      */
     boolean isValid(int[][] board, int num, int row, int col);
 
     /**
-     * To be done
+     * Clears the board by setting the boxes to zero
      */
     void clear();
 
@@ -48,7 +58,7 @@ public interface SudokuSolver {
     void setMatrix(int[][] m);
 
     /**
-     * To be done
+     * @return board
      */
     int[][] getMatrix();
 }
