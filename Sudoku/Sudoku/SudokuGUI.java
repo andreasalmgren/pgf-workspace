@@ -6,6 +6,9 @@ import java.awt.Container;
 import java.awt.Color;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.event.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -23,16 +26,18 @@ public class SudokuGUI {
         Container pane = frame.getContentPane();
 
         // making sudoku grid
-        Border fieldBorder = BorderFactory.createLineBorder(Color.LIGHT_GRAY);
+        
+        //Border fieldBorder = BorderFactory.createLineBorder(Color.LIGHT_GRAY);
         //Border boxBorder = BorderFactory.createLineBorder(Color.BLACK);
 
-        JPanel grid = new JPanel(new GridLayout(9, 0));
-        for (int i = 0; i < 81; ++i) {
-            //  TODO: add grid OR box coloration so that boxes of 3x3 stand out
-            final JTextField field = new JTextField(2);
-            field.setHorizontalAlignment(JTextField.CENTER); //Center text horizontally in the text field.
-            field.setBorder(fieldBorder); //Add the colored border.
-            grid.add(field);
+        JTextField[] fields = new JTextField[81];
+        JPanel grid = new JPanel(new GridLayout(9, 9));
+        for (int i = 0; i < fields.length; ++i) {
+            //final JTextField field = new JTextField(2);
+            fields[i] = new JTextField(2);
+            //field.setHorizontalAlignment(JTextField.CENTER); //Center text horizontally in the text field.
+            //field.setBorder(fieldBorder); //Add the colored border.
+            grid.add(fields[i]);
         }
 
         JPanel centeredGrid = new JPanel(new GridBagLayout());
