@@ -37,14 +37,14 @@ public class SudokuGUI {
         centeredGrid.add(grid);
 
         // Creating buttons
-        JButton Solve = new JButton("Solve");
-        JButton Clear = new JButton("Clear");
+        JButton BtnSolve = new JButton("Solve");
+        JButton BtnClear = new JButton("Clear");
 
         // Creating a panel to add buttons
         JPanel p = new JPanel();
         // Adding buttons to panel
-        p.add(Solve);
-        p.add(Clear);
+        p.add(BtnSolve);
+        p.add(BtnClear);
 
         // Adding stuff to frame
 
