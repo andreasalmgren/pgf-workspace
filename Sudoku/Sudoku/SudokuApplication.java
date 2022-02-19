@@ -4,8 +4,8 @@ import javax.swing.*;
 
 public class SudokuApplication {
     public static void main(String[] args) {
-        InterfaceSudokuSolver sudoku = new SudokuSolver();
-        new SudokuGUI();
+        InterfaceSudokuSolver solver = new SudokuSolver();
+        new SudokuGUI(solver);
         /*public static void main(String[] args) {
 
         Sudoku sudoku = new Sudoku();

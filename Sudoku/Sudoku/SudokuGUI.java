@@ -14,11 +14,11 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 
 public class SudokuGUI {
-    public SudokuGUI() {
-        SwingUtilities.invokeLater(() -> createSudokuWindow(100, 300));
+    public SudokuGUI(InterfaceSudokuSolver solver) {
+        SwingUtilities.invokeLater(() -> createSudokuWindow(solver, 100, 300));
     }
 
-    private void createSudokuWindow(int width, int height) {
+    private void createSudokuWindow(InterfaceSudokuSolver solver, int width, int height) { // sudokuSolver is never used atm, the GUI is in other words not connected to the SudokuSolver
         JFrame frame = new JFrame("Sudoku");
         Container pane = frame.getContentPane();
 
