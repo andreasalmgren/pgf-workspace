@@ -1,26 +1,40 @@
 package Sudoku;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.util.List;
-import java.util.Map;
 import java.awt.BorderLayout;
 import java.awt.Container;
-import java.awt.Point;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.Color;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+import javax.swing.border.Border;
 
 public class SudokuGUI {
     public SudokuGUI() {
-        SwingUtilities.invokeLater(() -> createWindow("Sudoku", 100, 300));
+        SwingUtilities.invokeLater(() -> createSudokuWindow(100, 300));
     }
 
-    private void createWindow(String title, int width, int height) {
-        JFrame frame = new JFrame(title);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // pane är en behållarkomponent till vilken de
-        // övriga komponenterna (listvy, knappar etc.) ska läggas till.
+    private void createSudokuWindow(int width, int height) {
+        JFrame frame = new JFrame("Sudoku");
         Container pane = frame.getContentPane();
+
+        // making sudoku grid
+        Border fieldBorder = BorderFactory.createLineBorder(Color.BLACK);
+
+        JPanel grid = new JPanel(new GridLayout(9, 0));
+        for (int i = 0; i < 81; ++i) {
+            final JTextField field = new JTextField(2);
+            field.setHorizontalAlignment(JTextField.CENTER); //Center text horizontally in the text field.
+            field.setBorder(fieldBorder); //Add the colored border.
+            grid.add(field);
+        }
+
+        JPanel centeredGrid = new JPanel(new GridBagLayout());
+        centeredGrid.add(grid);
 
         // Creating buttons
         JButton Solve = new JButton("Solve");
@@ -32,15 +46,13 @@ public class SudokuGUI {
         p.add(Solve);
         p.add(Clear);
 
-        // create JTextField with default text and columns
-        JTextField field = new JTextField("", 1); // !!! HÄR SKA ETT RUTNÄT RITAS UT ISTÄLLET !!!
-
         // Adding stuff to frame
 
-        pane.add(field, BorderLayout.CENTER);
+        pane.add(centeredGrid, BorderLayout.CENTER);
         pane.add(p, BorderLayout.SOUTH);
-
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
+        frame.setLocationByPlatform(true);
         frame.setVisible(true);
 
         /*

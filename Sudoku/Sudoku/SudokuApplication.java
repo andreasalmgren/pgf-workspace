@@ -1,5 +1,7 @@
 package Sudoku;
 
+import javax.swing.*;
+
 public class SudokuApplication {
     public static void main(String[] args) {
         InterfaceSudokuSolver sudoku = new SudokuSolver();
