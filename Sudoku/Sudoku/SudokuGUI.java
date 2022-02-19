@@ -23,10 +23,12 @@ public class SudokuGUI {
         Container pane = frame.getContentPane();
 
         // making sudoku grid
-        Border fieldBorder = BorderFactory.createLineBorder(Color.BLACK);
+        Border fieldBorder = BorderFactory.createLineBorder(Color.LIGHT_GRAY);
+        //Border boxBorder = BorderFactory.createLineBorder(Color.BLACK);
 
         JPanel grid = new JPanel(new GridLayout(9, 0));
         for (int i = 0; i < 81; ++i) {
+            //  TODO: add grid OR box coloration so that boxes of 3x3 stand out
             final JTextField field = new JTextField(2);
             field.setHorizontalAlignment(JTextField.CENTER); //Center text horizontally in the text field.
             field.setBorder(fieldBorder); //Add the colored border.
