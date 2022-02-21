@@ -23,9 +23,7 @@ public class Mountain extends Fractal {
      * @return the title
      */
     @Override
-    public String getTitle() {
-        return "Bergfraktal";
-    }
+    public String getTitle() { return "Bergfraktal"; }
 
     /**
      * Calculates the middle of two points
