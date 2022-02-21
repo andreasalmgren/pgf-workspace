@@ -53,7 +53,7 @@ public class Mountain extends Fractal {
      */
     private void fractalTriangle(TurtleGraphics turtle, int order, Point a, Point b, Point c) {
         if (order == 0) {
-            turtle.moveTo(a.getX(), a.getY());
+            turtle.moveTo(   a.getX(), a.getY());
             turtle.forwardTo(b.getX(), b.getY());
             turtle.forwardTo(c.getX(), c.getY());
             turtle.forwardTo(a.getX(), a.getY());
