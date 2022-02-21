@@ -46,4 +46,5 @@
         </endorsedDirs>
     </libraryInfo>
     <libraryInfo home="/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home" version="11.0.4"/>
+    <libraryInfo home="/usr/lib/jvm/java-11-openjdk-amd64" version="11.0.13"/>
 </libraryInfos>
