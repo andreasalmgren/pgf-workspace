@@ -2,20 +2,23 @@ package mountain;
 
 import fractal.*;
 import java.util.HashMap;
+import static mountain.RandomUtilities.randFunc;
 
 public class Mountain extends Fractal {
     private Point a;
     private Point b;
     private Point c;
+    private double deviation;
 
     /** Creates an object that handles Koch's fractal.
      * @param length the length of the triangle side
      */
-    public Mountain(Point a, Point b, Point c) {
+    public Mountain(Point a, Point b, Point c, double deviation) {
         super();
         this.a = a;
         this.b = b;
         this.c = c;
+        this.deviation = deviation;
     }
 
     /**
@@ -31,11 +34,11 @@ public class Mountain extends Fractal {
      * @param s     Point s
      * @return      the calculated point
      */
-    private Point calcPoint (Point t, Point s){
+    private Point calcPoint (Point t, Point s, double random){
         // Calculate center between two X-points
         int x = t.getX() + (s.getX() - t.getX()) / 2;
         // Center between Y:s, and adding an offset
-        int y = t.getY() + (s.getY() - t.getY()) / 2;
+        int y = (int) (t.getY() + (s.getY() - t.getY()) / 2 + random);
 
         return new Point(x, y);
     }
@@ -45,13 +48,13 @@ public class Mountain extends Fractal {
      */
     @Override
     public void draw(TurtleGraphics turtle) {
-        fractalTriangle(turtle, order, a, b, c);
+        fractalTriangle(turtle, order, deviation, a, b, c);
     }
 
     /*
      * Recursive method: Draws a recursive line of the triangle.
      */
-    private void fractalTriangle(TurtleGraphics turtle, int order, Point a, Point b, Point c) {
+    private void fractalTriangle(TurtleGraphics turtle, int order, double deviation, Point a, Point b, Point c) {
         if (order == 0) {
             turtle.moveTo(   a.getX(), a.getY());
             turtle.forwardTo(b.getX(), b.getY());
@@ -61,16 +64,16 @@ public class Mountain extends Fractal {
         }
 
         // Middle of the two points
-        Point ab = calcPoint(a, b);
-        Point ac = calcPoint(a, c);
-        Point bc = calcPoint(b, c);
+        Point ab = calcPoint(a, b, randFunc(deviation));
+        Point ac = calcPoint(a, c, randFunc(deviation));
+        Point bc = calcPoint(b, c, randFunc(deviation));
 
         // Points for the new triangles
         Point[][] triangles = new Point[][]{{a, ab, ac}, {ab, b, bc}, {ac, bc, c}, {bc, ac, ab}};
 
         // Draw all triangles
         for (Point[] p : triangles) {
-            fractalTriangle(turtle, order - 1, p[0], p[1], p[2]);
+            fractalTriangle(turtle, order - 1, deviation, p[0], p[1], p[2]);
         }
     }
 }
