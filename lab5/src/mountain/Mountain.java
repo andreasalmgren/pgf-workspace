@@ -32,49 +32,44 @@ public class Mountain extends Fractal {
      */
     @Override
     public void draw(TurtleGraphics turtle) {
-        turtle.moveTo(turtle.getWidth() / 2.0 - a.getX() / 2.0,
-                turtle.getHeight() / 2.0 + Math.sqrt(3.0) * a.getY() / 4.0);
-        fractalLine(turtle, order, a, b, c ,0);
-        //fractalLine(turtle, order,length,0);
-        //fractalLine(turtle, order,length,120);
-        //fractalLine(turtle, order,length,240);
+        fractalTriangle(turtle, order, a, b, c);
+    }
 
+    private Point calcPoint (Point a, Point b){
 
-        /*
-        turtle.moveTo(turtle.getWidth() / 2.0 - length / 2.0,
-                turtle.getHeight() / 2.0 + Math.sqrt(3.0) * length / 4.0);
-        fractalLine(turtle, order,length,0);
-        fractalLine(turtle, order,length,120);
-        fractalLine(turtle, order,length,240);
-         */
+        // Calculate center between two X-points
+        int x = a.getX() + (b.getX() - a.getX()) / 2;
+
+        // Center between Y:s, and adding an offset
+        int y = a.getY() + (b.getY() - a.getY()) / 2;
+
+        return new Point(x, y);
     }
 
     /*
      * Reursive method: Draws a recursive line of the triangle.
      */
-    private void fractalLine(TurtleGraphics turtle, int order, Point a, Point b, Point c, int alpha) {
+    private void fractalTriangle(TurtleGraphics turtle, int order, Point a, Point b, Point c) {
         if (order == 0) {
-            turtle.penDown();
-            turtle.setDirection(alpha);
+            turtle.moveTo(a.getX(), a.getY());
+
             turtle.forwardTo(b.getX(), b.getY());
             turtle.forwardTo(c.getX(), c.getY());
-            turtle.forwardTo(turtle.getWidth() / 2.0 - a.getX() / 2.0, turtle.getHeight() / 2.0 + Math.sqrt(3.0) * a.getY() / 4.0);
-        } else {
-            // fractalLine(turtle, order-1, ); beräkna sidlängd för att avgöra var vi ska börja rita???
-        }
-        /*
-        if (order == 0) {
-            //"rita en linje med längden length och riktningen alpha"
-            turtle.penDown();
-            turtle.setDirection(alpha);
-            turtle.forward(length);
-        } else {
-            fractalLine(turtle, order-1, length/3, alpha);
-            fractalLine(turtle,order-1, length/3, alpha-60);
-            fractalLine(turtle,order-1, length/3, alpha+60);
-            fractalLine(turtle,order-1, length/3, alpha);
-        }
 
-         */
+            turtle.forwardTo(a.getX(), a.getY());
+
+            // Middle of the two points
+            Point ab = calcPoint(a, b);
+            Point ac = calcPoint(a, c);
+            Point bc = calcPoint(b, c);
+
+            // Points for the new triangles
+            Point[][] triangles = new Point[][]{{a, ab, ac}, {ab, b, bc}, {ac, bc, c}, {bc, ac, ab}};
+
+            // Draw all triangles
+            for (Point[] p : triangles) {
+                fractalTriangle(turtle, order - 1, p[0], p[1], p[2]);
+            }
+        }
     }
 }
