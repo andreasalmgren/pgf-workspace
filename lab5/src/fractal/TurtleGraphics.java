@@ -28,7 +28,7 @@ public class TurtleGraphics {
 		y = newY;
 	}
 
-	/** The turtle moves to the location (newX,newY) and draws if the pen i lowered.
+	/** The turtle moves to the location (newX,newY) and draws if the pen is lowered.
 	 * @param  newX the x coordinate of the new location
 	 * @param  newY the y coordinate of the new location
 	 */
@@ -40,7 +40,7 @@ public class TurtleGraphics {
 		y = newY;
 	}
 
-	/** The turtle moves n pixels forward and draws if the pen i lowered.
+	/** The turtle moves n pixels forward and draws if the pen is lowered.
 	 * @param  n the nbr of pixels to go forward
 	 */
 	public void forward(double n) {
