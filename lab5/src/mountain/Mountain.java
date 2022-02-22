@@ -52,7 +52,7 @@ public class Mountain extends Fractal {
         // Center between Y:s, and adding an offset
         int y = (int) (t.getY() + (s.getY() - t.getY()) / 2 + random);
         
-   
+        center.put(new Side(t, s), new Point(x, y));
         return new Point(x, y);
     	}
     }
