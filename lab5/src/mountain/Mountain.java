@@ -2,6 +2,8 @@ package mountain;
 
 import fractal.*;
 import java.util.HashMap;
+import java.util.Map;
+
 import static mountain.RandomUtilities.randFunc;
 
 public class Mountain extends Fractal {
@@ -9,16 +11,22 @@ public class Mountain extends Fractal {
     private Point b;
     private Point c;
     private double deviation;
+    private Map<Side, Point> center = new HashMap<Side, Point>();
 
     /** Creates an object that handles Koch's fractal.
      * @param length the length of the triangle side
      */
+    
+    
     public Mountain(Point a, Point b, Point c, double deviation) {
         super();
         this.a = a;
         this.b = b;
         this.c = c;
         this.deviation = deviation;
+        center.put(new Side(a,b), calcPoint(a, b, randFunc(deviation)));
+        center.put(new Side(a,c), calcPoint(a, c, randFunc(deviation)));
+        center.put(new Side(b,c), calcPoint(b, c, randFunc(deviation)));
     }
 
     /**
@@ -35,12 +43,18 @@ public class Mountain extends Fractal {
      * @return      the calculated point
      */
     private Point calcPoint (Point t, Point s, double random){
+    	if(center.containsKey(new Side(t, s))) {
+    		return center.get(new Side(t, s));
+    	}
+    	else {
         // Calculate center between two X-points
         int x = t.getX() + (s.getX() - t.getX()) / 2;
         // Center between Y:s, and adding an offset
         int y = (int) (t.getY() + (s.getY() - t.getY()) / 2 + random);
-
+        
+   
         return new Point(x, y);
+    	}
     }
 
     /** Draws the fractal.
