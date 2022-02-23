@@ -44,6 +44,7 @@ public class Mountain extends Fractal {
      */
     private Point calcPoint (Point t, Point s, double random){
     	if(center.containsKey(new Side(t, s))) {
+            //System.out.println("i");
     		return center.get(new Side(t, s));
     	}
     	else {
@@ -87,7 +88,7 @@ public class Mountain extends Fractal {
 
         // Draw all triangles
         for (Point[] p : triangles) {
-            fractalTriangle(turtle, order - 1, deviation, p[0], p[1], p[2]);
+            fractalTriangle(turtle, order - 1, deviation/2, p[0], p[1], p[2]);
         }
     }
 }

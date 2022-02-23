@@ -34,22 +34,29 @@ public class Koch extends Fractal {
 		fractalLine(turtle, order,length,0);
 		fractalLine(turtle, order,length,120);
 		fractalLine(turtle, order,length,240);
+
+		//fractalLine(turtle,4, 810, 0);
 	}
 
 	/* 
 	 * Recursive method: Draws a recursive line of the triangle.
 	 */
+	//int i = 0;
 	private void fractalLine(TurtleGraphics turtle, int order, double length, int alpha) {
 		if (order == 0) {
 			//"rita en linje med längden length och riktningen alpha"
 			turtle.penDown();
 			turtle.setDirection(alpha);
 			turtle.forward(length);
+			turtle.penUp();
+			//i++;
+			//System.out.println("antal gånger linjen skrivs ut " + i);
 		} else {
 			fractalLine(turtle, order-1, length/3, alpha);
 			fractalLine(turtle,order-1, length/3, alpha-60);
 			fractalLine(turtle,order-1, length/3, alpha+60);
 			fractalLine(turtle,order-1, length/3, alpha);
+			//System.out.println("längd "+length/3);
 		}
 	}
 

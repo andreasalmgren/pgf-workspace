@@ -15,13 +15,12 @@ public class Side {
     }
     
     @Override
-    public boolean equals(Object s) {
-    	Side side = (Side) s;
-    	if(side.p1 == this.p1 && side.p2 == this.p2) {
-    		return true;
-    	}
-    	else {
-    		return false;
-    	}
-    }
+	public boolean equals(Object obj) {
+		if (obj instanceof Side) {
+			Side s = (Side)obj;
+			return (p1.equals(s.p1) || p1.equals(s.p2)) && (p2.equals(s.p2) || p2.equals(s.p1));
+		} else {
+			return false;
+		}
+	}
 }
