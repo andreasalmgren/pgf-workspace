@@ -77,8 +77,7 @@ public class BinarySearchTree<E> {
 		 * @return the height of the tree
 		 */
 		public int height () {
-			BinaryNode<E> n = root;
-			return height(n);
+			return this.height(root);
 		}
 
 		/**
@@ -90,7 +89,7 @@ public class BinarySearchTree<E> {
 			// If there is no node, you want to return -1 not 0. This is because you are adding 1 at the end.
 			// So if there isn't a node, you return -1 which cancels out the +1.
 			// https://www.youtube.com/watch?v=AWIJwNf0ZQE
-			return n == null ? -1 : 1 + Math.max(height(n.left), height(n.right));
+			return n == null ? 0 : 1 + Math.max(height(n.left), height(n.right));
 		}
 
 		/**
@@ -133,39 +132,37 @@ public class BinarySearchTree<E> {
 			}
 		}
 
-		/**
-		 * Builds a complete tree from the elements in the tree.
-		 */
-		public void rebuild () {
+	/**
+	 * Builds a complete tree from the elements in the tree.
+	 */
+	public void rebuild () {
 
+	}
+
+	/*
+	 * Adds all elements from the tree rooted at n in inorder to the list sorted.
+	 */
+	private void toArray (BinaryNode < E > n, ArrayList < E > sorted){
+
+	}
+
+	/*
+	 * Builds a complete tree from the elements from position first to
+	 * last in the list sorted.
+	 * Elements in the list a are assumed to be in ascending order.
+	 * Returns the root of tree.
+	 */
+	private BinaryNode<E> buildTree (ArrayList < E > sorted,int first, int last){
+		return null;
+	}
+
+	static class BinaryNode<E> {
+		E element;
+		BinaryNode<E> left;
+		BinaryNode<E> right;
+
+		private BinaryNode(E element) {
+			this.element = element;
 		}
-
-		/*
-		 * Adds all elements from the tree rooted at n in inorder to the list sorted.
-		 */
-		private void toArray (BinaryNode < E > n, ArrayList < E > sorted){
-
-		}
-
-		/*
-		 * Builds a complete tree from the elements from position first to
-		 * last in the list sorted.
-		 * Elements in the list a are assumed to be in ascending order.
-		 * Returns the root of tree.
-		 */
-		private BinaryNode<E> buildTree (ArrayList < E > sorted,int first, int last){
-			return null;
-		}
-
-		static class BinaryNode<E> {
-			E element;
-			BinaryNode<E> left;
-			BinaryNode<E> right;
-
-			private BinaryNode(E element) {
-				this.element = element;
-			}
-		}
-
 	}
 }
