@@ -86,8 +86,6 @@ public class BinarySearchTree<E> {
 		 * @return the height of the tree
 		 */
 		private int height (BinaryNode < E > n) {
-			// If there is no node, you want to return -1 not 0. This is because you are adding 1 at the end.
-			// So if there isn't a node, you return -1 which cancels out the +1.
 			// https://www.youtube.com/watch?v=AWIJwNf0ZQE
 			return n == null ? 0 : 1 + Math.max(height(n.left), height(n.right));
 		}
