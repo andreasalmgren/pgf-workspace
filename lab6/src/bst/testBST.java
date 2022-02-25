@@ -35,6 +35,8 @@ class TestBST {
     void add() {
         assertTrue(myIntBST.add(1));
         assertFalse(myIntBST.add(1));
+
+        //TODO add more tests
     }
 
     /**
@@ -49,5 +51,7 @@ class TestBST {
         assertTrue(myIntBST.add(4));
         assertTrue(myIntBST.add(2));
         assertEquals(myIntBST.height(), 3);
+
+        //TODO add more tests
     }
 }
