@@ -5,7 +5,6 @@ INDEX VERSION 1.131+/home/andreas/git/pgf-workspace/.metadata/.plugins/org.eclip
 3767367539.index
 575340225.index
 560541741.index
-1310218363.index
 2367636437.index
 825353288.index
 267402727.index

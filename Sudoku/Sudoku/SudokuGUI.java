@@ -1,10 +1,7 @@
 package Sudoku;
 
 import javax.swing.*;
-import java.awt.BorderLayout;
-import java.awt.Container;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
+import java.awt.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -26,14 +23,22 @@ public class SudokuGUI {
             fields[i] = new JTextField(2);
             grid.add(fields[i]);
         }
+        moGUL(fields);
         JPanel centeredGrid = new JPanel(new GridBagLayout());
         centeredGrid.add(grid);
 
         // creating buttons and adding ActionListeners
         JButton BtnSolve = new JButton("Solve");
         BtnSolve.addActionListener(e -> {
-            solver.solve(solver.board);
-            update(solver, fields);
+            try {
+                getField(solver, fields);
+                solver.solve(solver.board);
+                update(solver, fields);
+            } catch(Exception t) {
+                JOptionPane.showMessageDialog(null, "Fuck off you little rat of an Indian");
+                solver.clear();
+                update(solver, fields);
+            }
         });
         JButton BtnClear = new JButton("Clear");
         BtnClear.addActionListener(e -> {
@@ -51,6 +56,7 @@ public class SudokuGUI {
         // adding stuff to frame
         pane.add(centeredGrid, BorderLayout.CENTER);
         pane.add(p, BorderLayout.SOUTH);
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setLocationByPlatform(true);
@@ -77,6 +83,30 @@ public class SudokuGUI {
                     place++;
                 }
             }
+        }
+    }
+
+    private void getField(SudokuSolver solver, JTextField[] fields) {
+        int place = 0;
+        for (int row = 0; row < 9; row++) {
+            for (int col = 0; col < 9; col++) {
+                if (fields[place].getText().equals("")) {
+                    solver.board[row][col] = 0;
+                    place++;
+                } else {
+                    solver.board[row][col] = Integer.parseInt(fields[place].getText());
+                    place++;
+                }
+            }
+        }
+    }
+
+    private void moGUL(JTextField[] fields){
+        int[] COLORED_SQUARES = {0,1,2,9,10,11,18,19,20,6,7,8,15,16,17,24,25,26,30,31,32,39,40,41,48,49,50,54,55,56,63,64,65
+        ,72,73,74,60,61,62,69,70,71,78,79,80};
+
+        for(int i : COLORED_SQUARES){
+            fields[i].setBackground(Color.ORANGE);
         }
     }
 }
