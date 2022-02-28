@@ -22,7 +22,7 @@ public class SudokuGUI {
         // making sudoku grid
         JTextField[] fields = new JTextField[81];
         JPanel grid = new JPanel(new GridLayout(9, 9));
-        for (int i = 0; i < fields.length; ++i) {
+        for (int i = 0; i < fields.length; i++) {
             fields[i] = new JTextField(2);
             grid.add(fields[i]);
         }
@@ -32,13 +32,12 @@ public class SudokuGUI {
         // creating buttons and adding ActionListeners
         JButton BtnSolve = new JButton("Solve");
         BtnSolve.addActionListener(e -> {
-            // hangs system when unsolvable board, fix this
             solver.solve(solver.board);
             update(solver, fields);
         });
         JButton BtnClear = new JButton("Clear");
         BtnClear.addActionListener(e -> {
-        	solver.clear();
+            solver.clear();
             update(solver, fields);
         });
 
