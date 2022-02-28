@@ -1,17 +1,15 @@
 package Sudoku;
 
-import Sudoku.InterfaceSudokuSolver;
-
 public class SudokuSolver implements InterfaceSudokuSolver {
 
     private static final int gridSize = 9;
 
-    public static int[][] board = {
+    public int[][] board = {
             {1,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0},
+            {0,0,2,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,1,0,0,0,0},
             {0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0},
