@@ -17,27 +17,34 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 
 public class SudokuGUI {
-    public SudokuGUI(InterfaceSudokuSolver solver) {
+    public SudokuGUI(SudokuSolver solver) {
         SwingUtilities.invokeLater(() -> createSudokuWindow(solver));
     }
 
-    private void createSudokuWindow(InterfaceSudokuSolver solver) { // sudokuSolver is never used atm, the GUI is in other words not connected to the SudokuSolver
+    private void createSudokuWindow(SudokuSolver solver) { // sudokuSolver is never used atm, the GUI is in other words not connected to the SudokuSolver
         JFrame frame = new JFrame("Sudoku");
         Container pane = frame.getContentPane();
 
         // making sudoku grid
 
-        //Border fieldBorder = BorderFactory.createLineBorder(Color.LIGHT_GRAY);
-        //Border boxBorder = BorderFactory.createLineBorder(Color.BLACK);
-
         JTextField[] fields = new JTextField[81];
         JPanel grid = new JPanel(new GridLayout(9, 9));
         for (int i = 0; i < fields.length; ++i) {
-            //final JTextField field = new JTextField(2);
             fields[i] = new JTextField(2);
-            //field.setHorizontalAlignment(JTextField.CENTER); //Center text horizontally in the text field.
-            //field.setBorder(fieldBorder); //Add the colored border.
             grid.add(fields[i]);
+            solver.clear();
+        }
+
+        int place = 0;
+        for (int row = 0; row < 9; row++) {
+           for(int col = 0; col < 9; col++){
+               if (solver.board[row][col]==0) {
+                   place++;
+               } else {
+                   fields[place].setText(Integer.toString(solver.board[row][col]));
+                   place++;
+               }
+           }
         }
 
         JPanel centeredGrid = new JPanel(new GridBagLayout());
@@ -46,6 +53,12 @@ public class SudokuGUI {
         // Creating buttons
         JButton BtnSolve = new JButton("Solve");
         JButton BtnClear = new JButton("Clear");
+        BtnClear.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                solver.clear();
+            }
+        });
 
         // Creating a panel to add buttons
         JPanel p = new JPanel();

@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class SudokuApplication {
     public static void main(String[] args) {
-        InterfaceSudokuSolver solver = new SudokuSolver();
+        SudokuSolver solver = new SudokuSolver();
         new SudokuGUI(solver);
         /*public static void main(String[] args) {
 

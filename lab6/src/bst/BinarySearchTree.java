@@ -1,5 +1,6 @@
 package bst;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -22,6 +23,8 @@ public class BinarySearchTree<E> {
 		tree.add(72);
 		tree.add(50);
 
+		tree.rebuild();
+
 		tree.printTree();
 		visualizer.drawTree(tree);
 
@@ -30,7 +33,7 @@ public class BinarySearchTree<E> {
 	/**
 	 * Constructs an empty binary search tree.
 	 */
-	public BinarySearchTree () {
+	public BinarySearchTree() {
 		// tror att detta är rätt?
 		root = null;
 		comparator = (e1, e2) -> ((Comparable<E>) e1).compareTo(e2);
@@ -94,7 +97,7 @@ public class BinarySearchTree<E> {
 	 * Computes the height of tree.
 	 * @return the height of the tree
 	 */
-	public int height () {
+	public int height() {
 		return this.height(root);
 	}
 
@@ -103,7 +106,7 @@ public class BinarySearchTree<E> {
 	 * @param  aNode
 	 * @return the height of the tree
 	 */
-	private int height (BinaryNode < E > n) {
+	private int height(BinaryNode<E> n) {
 		// https://www.youtube.com/watch?v=AWIJwNf0ZQE
 		return n == null ? 0 : 1 + Math.max(height(n.left), height(n.right));
 	}
@@ -112,14 +115,14 @@ public class BinarySearchTree<E> {
 	 * Returns the number of elements in this tree.
 	 * @return the number of elements in this tree
 	 */
-	public int size () {
+	public int size() {
 		return this.size;
 	}
 
 	/**
 	 * Removes all of the elements from this list.
 	 */
-	public void clear () {
+	public void clear() {
 		this.root = null;
 		this.size = 0;
 	}
@@ -127,7 +130,7 @@ public class BinarySearchTree<E> {
 	/**
 	 * Print tree contents in inorder.
 	 */
-	public void printTree () {
+	public void printTree() {
 		/*
 		SEE THIS PIC for some light midget porn
 		https://www.techiedelight.com/wp-content/uploads/Inorder-Traversal.png
@@ -139,7 +142,7 @@ public class BinarySearchTree<E> {
 	 * Systematically goes through BST inorder and prints out its content
 	 * @param n	BinaryNode<E> n
 	 */
-	private void printTree (BinaryNode<E> n) {
+	private void printTree(BinaryNode<E> n) {
 			if (n!=null) {
 				// har skrivit denna men fattar inte lol, behöver tänka tsm
 				this.printTree(n.left);
@@ -151,15 +154,17 @@ public class BinarySearchTree<E> {
 	/**
 	 * Builds a complete tree from the elements in the tree.
 	 */
-	public void rebuild () {
-
+	public void rebuild() {
+		ArrayList<E> sorted = new ArrayList<>();
+		toArray(this.root, sorted);
+		this.root = this.buildTree(sorted, 0, sorted.size() - 1);
 	}
 
 	/*
 	 * Adds all elements from the tree rooted at n in inorder to the list sorted.
 	 */
-	private void toArray (BinaryNode < E > n, ArrayList < E > sorted) {
-		if (n == null) {
+	private void toArray(BinaryNode<E> n, ArrayList<E> sorted) {
+		if (n != null) {
 			this.toArray(n.left, sorted);
 			sorted.add(n.element);
 			this.toArray(n.right, sorted);
@@ -171,8 +176,21 @@ public class BinarySearchTree<E> {
 		 * Elements in the list a are assumed to be in ascending order.
 		 * Returns the root of tree.
 		 */
-		private BinaryNode<E> buildTree (ArrayList < E > sorted,int first, int last){
-			return null;
+		private BinaryNode<E> buildTree(ArrayList<E> sorted,int first, int last){
+			if(first > last) {
+				return null;
+			}
+
+			int mid = (last + first) / 2;
+
+			BinaryNode<E> n = new BinaryNode<>(sorted.get(mid));
+
+			// Build left side of sorted list
+			n.left = this.buildTree(sorted, first, mid - 1);
+			// Build right side of sorted list
+			n.right = this.buildTree(sorted, mid + 1, last);
+
+			return n;
 		}
 
 	static class BinaryNode<E> {
