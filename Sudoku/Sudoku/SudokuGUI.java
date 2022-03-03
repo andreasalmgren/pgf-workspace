@@ -11,7 +11,7 @@ public class SudokuGUI {
     public SudokuGUI(SudokuSolver solver) {
         SwingUtilities.invokeLater(() -> createSudokuWindow(solver));
     }
-
+    private int error;
     private void createSudokuWindow(SudokuSolver solver) {
         JFrame frame = new JFrame("Sudoku");
         Container pane = frame.getContentPane();
@@ -21,30 +21,33 @@ public class SudokuGUI {
         JPanel grid = new JPanel(new GridLayout(9, 9));
         for (int i = 0; i < fields.length; i++) {
             fields[i] = new JTextField(2);
+            fields[i].setFont(fields[i].getFont().deriveFont(Font.BOLD, 14f));
             grid.add(fields[i]);
         }
-        moGUL(fields);
+        colorFields(fields);
         JPanel centeredGrid = new JPanel(new GridBagLayout());
         centeredGrid.add(grid);
 
         // creating buttons and adding ActionListeners
         JButton BtnSolve = new JButton("Solve");
         BtnSolve.addActionListener(e -> {
-
-                System.out.println(solver.isAllValid());
-                try {
-                    getField(solver, fields);
-                    solver.solve(solver.board); // de e fel på solve för hänger sig här när man ger två siffror som är likadana
-                    update(solver, fields);
-
-                } catch (Exception t) {
-                    // JOptionPane.showMessageDialog(null, "Fuck off you little rat of an Indian");
-                    solver.clear();
+            //System.out.println(solver.isAllValid());
+            try {
+                getFields(solver, fields);
+                if (!solver.solve(solver.board)) {
+                    JOptionPane.showMessageDialog(null, "This sudoku is unsolvable. Please try another combination of numbers!");
+                    //only accept numbers 1-9
+                } else if (error==-1) { // a blir -1 i getFields
+                    JOptionPane.showMessageDialog(null, "I will only accept the numbers 1-9.");
+                } else {
+                    getFields(solver, fields);
+                    solver.solve(solver.board);
                     update(solver, fields);
                 }
-
-                //}
-
+                // handle weird characters
+            } catch (Exception t) {
+                JOptionPane.showMessageDialog(null, "I will only accept the numbers 1-9.");
+            }
         });
         JButton BtnClear = new JButton("Clear");
         BtnClear.addActionListener(e -> {
@@ -92,14 +95,18 @@ public class SudokuGUI {
         }
     }
 
-    private void getField(SudokuSolver solver, JTextField[] fields) {
+    private void getFields(SudokuSolver solver, JTextField[] fields) {
         int place = 0;
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
                 if (fields[place].getText().equals("")) {
                     solver.board[row][col] = 0;
                     place++;
-                } else {
+                } else if (Integer.parseInt(fields[place].getText()) < 1 || Integer.parseInt(fields[place].getText()) > 9) {
+                    error = -1;
+                    place++;
+                }
+                else {
                     solver.board[row][col] = Integer.parseInt(fields[place].getText());
                     place++;
                 }
@@ -107,12 +114,12 @@ public class SudokuGUI {
         }
     }
 
-    private void moGUL(JTextField[] fields){
+    private void colorFields(JTextField[] fields){
         int[] COLORED_SQUARES = {0,1,2,9,10,11,18,19,20,6,7,8,15,16,17,24,25,26,30,31,32,39,40,41,48,49,50,54,55,56,63,64,65
         ,72,73,74,60,61,62,69,70,71,78,79,80};
 
         for(int i : COLORED_SQUARES){
-            fields[i].setBackground(Color.ORANGE);
+            fields[i].setBackground(Color.LIGHT_GRAY);
         }
     }
 }

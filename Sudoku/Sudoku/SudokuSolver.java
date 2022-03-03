@@ -5,19 +5,19 @@ import javax.swing.*;
 public class SudokuSolver implements InterfaceSudokuSolver {
 
     private static final int gridSize = 9;
-    private final static int EMPTY = 0;
 
     public int[][] board = {
-            {1,0,0,0,0,0,0,0,0},
+            {1,2,3,0,0,0,0,0,0},
+            {4,5,6,0,0,0,0,0,0},
+            {0,0,0,7,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0},
-            {0,0,2,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,1,0,0,0,0},
             {0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0}
     };
+
 
     private boolean isNumInRow(int number, int row) {
         for (int i = 0; i < gridSize; i++) {
