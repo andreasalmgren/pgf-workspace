@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eea7139c-a028-43e8-8a58-f788827ab73f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../Sudoku/Sudoku/SudokuGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Sudoku/Sudoku/SudokuGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Sudoku/Sudoku/SudokuSolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Sudoku/Sudoku/SudokuSolver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab6/bin/bst/BinarySearchTree$BinaryNode.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../lab6/bin/bst/BinarySearchTree$BinaryNode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab6/bin/bst/BinarySearchTree.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../lab6/bin/bst/BinarySearchTree.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +28,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../lab6/src" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Sudoku/Sudoku" />
   </component>
   <component name="RunManager">
     <configuration name="TestAppendFifoQueue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">

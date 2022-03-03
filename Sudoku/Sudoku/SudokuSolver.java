@@ -1,8 +1,11 @@
 package Sudoku;
 
+import javax.swing.*;
+
 public class SudokuSolver implements InterfaceSudokuSolver {
 
     private static final int gridSize = 9;
+    private final static int EMPTY = 0;
 
     public int[][] board = {
             {1,0,0,0,0,0,0,0,0},
@@ -48,57 +51,34 @@ public class SudokuSolver implements InterfaceSudokuSolver {
         return false;
     }
 
+
     public boolean isValid(int[][] board, int number, int row, int column) {
-        return !isNumInRow(number, row) &&
+        return  !isNumInRow(number, row) &&
                 !isNumInCol(number, column) &&
                 !isNumInBox(number, row, column);
     }
 
-    // bara ngt jag testade att skriva, vi kan nog bara ta bort den för vår kod fungerar inte för funktionen ändå
-    public void validBoard(int[][] board){
-        for (int row = 0; row < gridSize; row++) {
-            for (int col = 0; col < gridSize; col++) {
-                System.out.println(isValid(board, board[row][col], row, col));
-                if (!isValid(board, board[row][col], row, col)) {
-                    System.out.println("valid"); // will always reach this statement kek
-                } else {
-                    System.out.println("invalid");
-                }
-            }
-        }
-    }
-
     public boolean solve(int[][] board) {
+
         for (int row = 0; row < gridSize; row++) {
             for (int col = 0; col < gridSize; col++) {
                 if (board[row][col] == 0) {
                     for (int numberToTry = 1; numberToTry <= gridSize; numberToTry++) {
                         if (isValid(board, numberToTry, row, col)) {
-                            System.out.println(1);
                             add(row, col, numberToTry);
 
                             if (solve(board)) {
-                                System.out.println(2);
-
                                 return true;
                             }
                             else {
-                                System.out.println(3);
-
                                 remove(row, col);
                             }
                         }
                     }
-                    System.out.println(4);
-
                     return false;
-                    //System.out.println("Mökmonstret");
                 }
             }
         }
-        System.out.println(5);
-
-        //System.out.println("Mökmonstret");
         return true;
     }
 
@@ -106,7 +86,6 @@ public class SudokuSolver implements InterfaceSudokuSolver {
     public void add(int row, int col, int digit) {
         checkArgs(row, col, digit);
         board[row][col] = digit;
-
     }
 
     @Override
@@ -123,13 +102,22 @@ public class SudokuSolver implements InterfaceSudokuSolver {
 
 
     public boolean isAllValid() {
-        boolean bool = false;
+        //System.out.println(isValid(this.board, 1, 5, 1));
+        boolean bool = true;
         for(int r = 0; r < gridSize; r++) {
             for(int c = 0; c < gridSize; c++) {
                 int num = board[r][c];
-                bool =  !isNumInRow(num, r) &&
-                        !isNumInCol(num, c) &&
-                        !isNumInBox(num, r, c);
+                if(num!=0) {
+                    return bool;
+                    //bool =  !isNumInRow(num, r) &&
+                       //     !isNumInCol(num, c) &&
+                         //   !isNumInBox(num, r, c);
+                    //för varje rad, lägg in element i en array. I denna array får bara 1-9 finnas och enbart en gång
+                          //  sedan så måste du ta position ett i alla arrayerna och lägga in i en ny array, kolla återigen
+                    //så att värdena 1-9 enbart förekommer en gång
+                          //  återupprepa med position två, tre osv tills hela matrisens värden har kollats igenom
+
+                }
             }
         }
         return bool;
