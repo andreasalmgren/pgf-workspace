@@ -5,8 +5,8 @@
 		<item key="height" value="400"/>
 	</section>
 	<section name="RefactoringStatusDialog">
-		<item key="DIALOG_WIDTH" value="800"/>
-		<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
-		<item key="DIALOG_HEIGHT" value="472"/>
+		<item key="DIALOG_WIDTH" value="806"/>
+		<item key="DIALOG_FONT_NAME" value="1|Noto Sans|11.0|0|GTK|1|"/>
+		<item key="DIALOG_HEIGHT" value="497"/>
 	</section>
 </section>

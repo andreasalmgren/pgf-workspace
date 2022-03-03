@@ -30,15 +30,39 @@ public class SudokuGUI {
         // creating buttons and adding ActionListeners
         JButton BtnSolve = new JButton("Solve");
         BtnSolve.addActionListener(e -> {
+            //System.out.println("Mögggg");
+            //if (solver.test==false) {
+              //  System.out.println("Mögggg");
+               // JOptionPane.showMessageDialog(null, "Fuck off you little rat of an Indian");
+            //} else {
+
+
+
+            ///solver.validBoard(solver.board);
+
+
+
+            //if (solver.solve(solver.board)) {
+           //     System.out.println("Solved successfully!");
+            //}
+            //else {
+            //    System.out.println("Unsolvable board :(");
+            //}
             try {
+                System.out.println("Mögggg");
                 getField(solver, fields);
-                solver.solve(solver.board);
+                System.out.println("Mögel");
+                solver.solve(solver.board); // de e fel på solve för hänger sig här när man ger två siffror som är likadana
+                System.out.println("fuuck");
                 update(solver, fields);
-            } catch(Exception t) {
+                System.out.println("luul");
+            } catch (Exception t) {
+                System.out.println("miffop");
                 JOptionPane.showMessageDialog(null, "Fuck off you little rat of an Indian");
                 solver.clear();
                 update(solver, fields);
             }
+            //}
         });
         JButton BtnClear = new JButton("Clear");
         BtnClear.addActionListener(e -> {

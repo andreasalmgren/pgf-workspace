@@ -16,7 +16,7 @@ public class SudokuSolver implements InterfaceSudokuSolver {
             {0,0,0,0,0,0,0,0,0}
     };
 
-    private boolean isNumInRow(int[][] board, int number, int row) {
+    private boolean isNumInRow(int number, int row) {
         for (int i = 0; i < gridSize; i++) {
             if (get(row, i) == number) {
                 return true;
@@ -25,7 +25,7 @@ public class SudokuSolver implements InterfaceSudokuSolver {
         return false;
     }
 
-    private boolean isNumInCol(int[][] board, int number, int column) {
+    private boolean isNumInCol(int number, int column) {
         for (int i = 0; i < gridSize; i++) {
             if (get(i, column) == number) {
                 return true;
@@ -34,7 +34,7 @@ public class SudokuSolver implements InterfaceSudokuSolver {
         return false;
     }
 
-    private boolean isNumInBox(int[][] board, int number, int row, int column) {
+    private boolean isNumInBox(int number, int row, int column) {
         int localBoxRow = row - row % 3; // räkna ut första raden i rutan
         int localBoxColumn = column - column % 3; // räkna ut första kolumnen
 
@@ -49,9 +49,23 @@ public class SudokuSolver implements InterfaceSudokuSolver {
     }
 
     public boolean isValid(int[][] board, int number, int row, int column) {
-        return !isNumInRow(board, number, row) &&
-                !isNumInCol(board, number, column) &&
-                !isNumInBox(board, number, row, column);
+        return !isNumInRow(number, row) &&
+                !isNumInCol(number, column) &&
+                !isNumInBox(number, row, column);
+    }
+
+    // bara ngt jag testade att skriva, vi kan nog bara ta bort den för vår kod fungerar inte för funktionen ändå
+    public void validBoard(int[][] board){
+        for (int row = 0; row < gridSize; row++) {
+            for (int col = 0; col < gridSize; col++) {
+                System.out.println(isValid(board, board[row][col], row, col));
+                if (!isValid(board, board[row][col], row, col)) {
+                    System.out.println("valid"); // will always reach this statement kek
+                } else {
+                    System.out.println("invalid");
+                }
+            }
+        }
     }
 
     public boolean solve(int[][] board) {
@@ -60,20 +74,31 @@ public class SudokuSolver implements InterfaceSudokuSolver {
                 if (board[row][col] == 0) {
                     for (int numberToTry = 1; numberToTry <= gridSize; numberToTry++) {
                         if (isValid(board, numberToTry, row, col)) {
+                            System.out.println(1);
                             add(row, col, numberToTry);
 
                             if (solve(board)) {
+                                System.out.println(2);
+
                                 return true;
                             }
                             else {
-                               remove(row, col);
+                                System.out.println(3);
+
+                                remove(row, col);
                             }
                         }
                     }
+                    System.out.println(4);
+
                     return false;
+                    //System.out.println("Mökmonstret");
                 }
             }
         }
+        System.out.println(5);
+
+        //System.out.println("Mökmonstret");
         return true;
     }
 
@@ -102,9 +127,9 @@ public class SudokuSolver implements InterfaceSudokuSolver {
         for(int r = 0; r < gridSize; r++) {
             for(int c = 0; c < gridSize; c++) {
                 int num = board[r][c];
-                bool =  !isNumInRow(board, num, r) &&
-                        !isNumInCol(board, num, c) &&
-                        !isNumInBox(board, num, r, c);
+                bool =  !isNumInRow(num, r) &&
+                        !isNumInCol(num, c) &&
+                        !isNumInBox(num, r, c);
             }
         }
         return bool;
