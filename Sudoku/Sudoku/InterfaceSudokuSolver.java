@@ -6,7 +6,7 @@ public interface InterfaceSudokuSolver {
      * Tries to solve the sudoku recursively
      * @return true if sudoku was solved
      */
-    boolean solve(int[][] board);
+    boolean solve();
 
     /**
      * Puts digit in the box row, col.
@@ -17,7 +17,7 @@ public interface InterfaceSudokuSolver {
      * @throws IllegalArgumentException if row, col or digit is outside the range
      *                                  [0..9]
      */
-    void add(int row, int col, int digit);
+    void add(int row, int col, int digit) throws IllegalArgumentException;
 
     /**
      * @param row   The row
@@ -54,7 +54,7 @@ public interface InterfaceSudokuSolver {
      * @throws IllegalArgumentException if m has the wrong dimension or contains
      *                                  values outside the range [0..9]
      */
-    void setMatrix(int[][] m);
+    void setMatrix(int[][] m) throws IllegalArgumentException;
 
     /**
      * @return board

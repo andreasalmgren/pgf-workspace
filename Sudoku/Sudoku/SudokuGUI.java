@@ -2,7 +2,6 @@ package Sudoku;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Arrays;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -38,15 +37,15 @@ public class SudokuGUI {
                 getFields(solver, fields);
                 //if (solver.hasDuplicates(solver.board)) {
                  //   JOptionPane.showMessageDialog(null, "This sudoku is unsolvable as a row contains two of the same numbers.");
-                if (!solver.solve(solver.board)) {
+                if (!solver.solve()) {
                     JOptionPane.showMessageDialog(null, "This sudoku is unsolvable. Please try another combination of numbers!");
                     //only accept numbers 1-9
                 } else if (error==-1) { // a blir -1 i getFields
                     JOptionPane.showMessageDialog(null, "I will only accept the numbers 1-9.");
                 } else {
                     getFields(solver, fields);
-                    solver.solve(solver.board);
-                    update(solver, fields);
+                    solver.solve();
+                    updateFields(solver, fields);
                 }
                 // handle weird characters
             } catch (Exception t) {
@@ -56,7 +55,7 @@ public class SudokuGUI {
         JButton BtnClear = new JButton("Clear");
         BtnClear.addActionListener(e -> {
             solver.clear();
-            update(solver, fields);
+            updateFields(solver, fields);
         });
 
         // creating a panel to add buttons
@@ -76,7 +75,7 @@ public class SudokuGUI {
         frame.setVisible(true);
 
         // take values from initial board and put them in sudoku board
-        update(solver, fields);
+        updateFields(solver, fields);
     }
 
     /**
@@ -84,7 +83,7 @@ public class SudokuGUI {
      * @param solver    the SudokuSolver instance
      * @param fields    the JTextField[]
      */
-    private void update(SudokuSolver solver, JTextField[] fields) {
+    private void updateFields(SudokuSolver solver, JTextField[] fields) {
         int place = 0;
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
@@ -99,6 +98,11 @@ public class SudokuGUI {
         }
     }
 
+    /**
+     * Gets values from JTextFields and adds them to board
+     * @param solver
+     * @param fields
+     */
     private void getFields(SudokuSolver solver, JTextField[] fields) {
         int place = 0;
         for (int row = 0; row < 9; row++) {
@@ -118,6 +122,10 @@ public class SudokuGUI {
         }
     }
 
+    /**
+     * Colors the fields in select ones
+     * @param fields
+     */
     private void colorFields(JTextField[] fields){
         int[] COLORED_SQUARES = {0,1,2,9,10,11,18,19,20,6,7,8,15,16,17,24,25,26,30,31,32,39,40,41,48,49,50,54,55,56,63,64,65
         ,72,73,74,60,61,62,69,70,71,78,79,80};

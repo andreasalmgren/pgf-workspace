@@ -20,7 +20,6 @@ class SudokuSolverTests {
             { 0, 0, 0, 0, 0, 0, 4, 0, 0 }
             };
 
-
     @BeforeEach
     void setUp() {
         // Create empty Sudoku
@@ -34,7 +33,7 @@ class SudokuSolverTests {
 
     @Test
     void testEmpty() {
-        assertTrue(sudoku.solve(sudoku.board));
+        assertTrue(sudoku.solve());
     }
 
     /**
@@ -44,7 +43,7 @@ class SudokuSolverTests {
     @Test
     void testPredefinedBoard() {
         sudoku.setMatrix(testBoard);
-        assertTrue(sudoku.solve(sudoku.board));
+        assertTrue(sudoku.solve());
     }
 
     /**
@@ -80,9 +79,14 @@ class SudokuSolverTests {
     @Test
     void testUnsolvableGrid() {
         sudoku.add(0, 0, 1);
-        sudoku.add(0, 1, 1);
+        sudoku.add(0, 1, 2);
+        sudoku.add(0, 2, 3);
+        sudoku.add(1, 0, 4);
+        sudoku.add(1, 1, 5);
+        sudoku.add(1, 2, 6);
+        sudoku.add(2, 3, 7);
 
-        assertFalse(sudoku.solve(sudoku.board));
+        assertFalse(sudoku.solve());
     }
 
     /**
@@ -92,7 +96,7 @@ class SudokuSolverTests {
     @Test
     void testGetSetNumber() {
         assertEquals(sudoku.get(0, 0), 0);
-        assertThrows(ArrayIndexOutOfBoundsException.class, () -> sudoku.get(10, 10), "Should throw error");
+        assertThrows(IllegalArgumentException.class, () -> sudoku.get(10, 10), "Should throw error");
 
         sudoku.add(0, 0, 1);
 
@@ -127,19 +131,19 @@ class SudokuSolverTests {
 
         assertFalse(sudoku.isValid(sudoku.board,0, 0, 1), "IsValid is not correct");
 
-        assertFalse(sudoku.solve(sudoku.board));
-        assertTrue(sudoku.isAllValid());
+        assertTrue(sudoku.solve());
+        assertFalse(sudoku.isAllValid());
 
-        assertThrows(ArrayIndexOutOfBoundsException.class, () -> sudoku.isValid(sudoku.board,10, 10, 10), "Should throw error");
+        assertThrows(IllegalArgumentException.class, () -> sudoku.isValid(sudoku.board,10, 10, 10), "Should throw error");
     }
 
     /**
-     * Tests the public method clearAll
+     * Tests the public method clear
      */
 
     @Test
     void testClearAll() {
-        assertTrue(sudoku.solve(sudoku.board));
+        assertTrue(sudoku.solve());
 
         sudoku.clear();
 
@@ -167,6 +171,20 @@ class SudokuSolverTests {
 
     @Test
     void testGetMatrix() {
+        int[][] empty = sudoku.getMatrix();
 
+        for(int r = 0; r < 9; r++) {
+            for(int c = 0; c < 9; c++) {
+                assertEquals(empty[r][c], 0);
+            }
+        }
+
+        // Test first row once solved
+        sudoku.solve();
+        int[][] solved = sudoku.getMatrix();
+
+        for(int i = 0; i < 9; i++) {
+            assertEquals(solved[0][i], i + 1);
+        }
     }
 }
