@@ -19,39 +19,6 @@ public class SudokuSolver implements InterfaceSudokuSolver {
             {0,0,0,0,0,0,0,0,0}
     };
 
-    /*
-    public boolean hasDuplicates(int [][] inArray) {
-        boolean dup = false;
-        for (int k = 0; k < inArray[0].length; k++) { //loop through columns
-            for (int i = 0; i < inArray.length - 1; i++) {
-                for (int j = i; j < inArray.length; j++) {
-                    if (inArray[k][i] == inArray[k][j] && inArray[k][j] != 0 && inArray[k][i] != 0  ) {
-                        dup = true;
-                        break;
-                    }
-                }
-            }
-        }
-        return dup;
-    }
-
-     */
-/*
-    public boolean checkDuplicate(int[][] board) {
-        for (int[] ints : board) {
-            for (int k = 0; k < board.length - 2; k = k + 1) {
-                for (int j = 1 + k; j < ints.length; j = j + 1) {
-                    if (ints[k] == ints[j]) {
-                        return false;
-                    }
-                }
-            }
-        }
-        return true;
-    }
-
- */
-
     /**
      * Checks if a number is in row
      * @param number
@@ -113,7 +80,7 @@ public class SudokuSolver implements InterfaceSudokuSolver {
      * @return true if not, false if yes
      */
     public boolean isValid(int[][] board, int number, int row, int column) {
-        return  !isNumInRow(number, row) &&
+        return  !isNumInRow(number, row)&&
                 !isNumInCol(number, column) &&
                 !isNumInBox(number, row, column);
     }
@@ -196,16 +163,27 @@ public class SudokuSolver implements InterfaceSudokuSolver {
      */
     public boolean isAllValid() {
         //System.out.println(isValid(this.board, 1, 5, 1));
-        boolean bool = true;
+        //Returnerar den senaste checkade cellen
+        //boolean bool = true;
         for(int r = 0; r < gridSize; r++) {
             for(int c = 0; c < gridSize; c++) {
                 int num = board[r][c];
+                System.out.println(num);
                 if(num!=0) {
-                    bool = isValid(board, num, r, c);
+
+                    remove(r,c);
+                    if(!isValid(board, num, r, c)){
+                        board[r][c] = num;
+                        return false;
+                    }
+                    else{
+                        board[r][c] = num;
+                    }
                 }
             }
         }
-        return bool;
+        //Returnera true
+        return true;
     }
 
     /**
@@ -225,6 +203,7 @@ public class SudokuSolver implements InterfaceSudokuSolver {
      * @param m the matrix with the digits to insert
      */
     @Override
+    //Kollar inte efter fel dimensioner på matrisen m?
     public void setMatrix(int[][] m) {
         board = m;
     }

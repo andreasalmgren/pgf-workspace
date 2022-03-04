@@ -1,57 +1,94 @@
 package bst;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class TestBST {
-    private BinarySearchTree<Integer> myIntBST;
-    private BinarySearchTree<Integer> myIntBST_comp;
-    private BinarySearchTree<String> myStringBST;
+    private BinarySearchTree<Integer> tree;
+    private BinarySearchTree<Integer> tree2;
+    private BinarySearchTree<String> tree3;
 
     @BeforeEach
     void setUp() {
-        myIntBST = new BinarySearchTree<>();
-         myIntBST_comp = new BinarySearchTree<>((e1, e2) -> e1 - e2);
-        myStringBST = new BinarySearchTree<>();
+        tree = new BinarySearchTree<Integer>();
+
+        // Egen konstruktor
+        tree2 = new BinarySearchTree<Integer>((e1, e2) -> e1 - e2);
+
+        // String
+        tree3 = new BinarySearchTree<String>();
     }
 
     @AfterEach
     void tearDown(){
-        myIntBST = null;
-        myIntBST_comp = null;
-        myStringBST = null;
+        tree = null;
+        tree2 = null;
+        tree3 = null;
     }
 
     /**
-     * Test the add method
+     * Test the size/add method
      */
     @Test
-    void add() {
-        assertTrue(myIntBST.add(1));
-        assertFalse(myIntBST.add(1));
+    void testSize() {
+        assertTrue(tree.add(1));
+        assertTrue(tree.add(2));
+        assertTrue(tree.add(3));
 
-        //TODO add more tests
+        assertFalse(tree.add(3));
+
+        assertEquals(tree.size(), 3);
+
+        assertTrue(tree2.add(1));
+        assertEquals(tree2.size(), 1);
+
+        assertTrue(tree3.add("h"));
+        assertTrue(tree3.add("d"));
+        assertFalse(tree3.add("h"));
+
+        assertEquals(tree3.size(), 2);
     }
 
     /**
      * Test the height of a BST
      */
     @Test
-    void height() {
-        assertEquals(0, myIntBST.height(), "Empty BST should return height 0");
+    void testHeight() {
+        assertTrue(tree.add(1));
+        assertTrue(tree.add(3));
+        assertTrue(tree.add(4));
+        assertTrue(tree.add(2));
 
-        assertTrue(myIntBST.add(1));
-        assertTrue(myIntBST.add(3));
-        assertTrue(myIntBST.add(4));
-        assertTrue(myIntBST.add(2));
-        assertEquals(myIntBST.height(), 3);
+        assertEquals(tree.height(), 3);
 
-        //TODO add more tests
+        assertTrue(tree2.add(1));
+        assertTrue(tree2.add(2));
+        assertTrue(tree2.add(3));
+        assertFalse(tree2.add(1));
+        assertEquals(tree2.height(), 3);
+
+        assertTrue(tree3.add("h"));
+        assertTrue(tree3.add("d"));
+        assertFalse(tree3.add("h"));
+
+        assertEquals(tree3.height(), 2);
     }
+
+    /**
+     * Test clear/ size
+     */
+    @Test
+    void testClear() {
+        tree.add(1);
+        tree.add(52);
+        tree.add(8);
+
+        tree.clear();
+
+        assertEquals(tree.size(), 0);
+    }
+
 }

@@ -32,24 +32,28 @@ public class SudokuGUI {
         JButton BtnSolve = new JButton("Solve");
         BtnSolve.addActionListener(e -> {
             //System.out.print(Arrays.toString(solver.board[0]));
-            //System.out.println(solver.isAllValid());
-            try {
-                getFields(solver, fields);
-                //if (solver.hasDuplicates(solver.board)) {
-                 //   JOptionPane.showMessageDialog(null, "This sudoku is unsolvable as a row contains two of the same numbers.");
-                if (!solver.solve()) {
-                    JOptionPane.showMessageDialog(null, "This sudoku is unsolvable. Please try another combination of numbers!");
-                    //only accept numbers 1-9
-                } else if (error==-1) { // a blir -1 i getFields
-                    JOptionPane.showMessageDialog(null, "I will only accept the numbers 1-9.");
-                } else {
+            getFields(solver, fields);
+            if (!solver.isAllValid()) {
+                JOptionPane.showMessageDialog(null, "This board is not valid!");
+            } else {
+                try {
                     getFields(solver, fields);
-                    solver.solve();
-                    updateFields(solver, fields);
+                    //if (solver.hasDuplicates(solver.board)) {
+                    //   JOptionPane.showMessageDialog(null, "This sudoku is unsolvable as a row contains two of the same numbers.");
+                    if (!solver.solve()) {
+                        JOptionPane.showMessageDialog(null, "This sudoku is unsolvable. Please try another combination of numbers!");
+                        //only accept numbers 1-9
+                    } else if (error == -1) { // a blir -1 i getFields
+                        JOptionPane.showMessageDialog(null, "I will only accept the numbers 1-9.");
+                    } else {
+                        getFields(solver, fields);
+                        solver.solve();
+                        updateFields(solver, fields);
+                    }
+                    // handle weird characters
+                } catch (Exception t) {
+                    JOptionPane.showMessageDialog(null, "I will only accept the numbers 1-9.");
                 }
-                // handle weird characters
-            } catch (Exception t) {
-                JOptionPane.showMessageDialog(null, "I will only accept the numbers 1-9.");
             }
         });
         JButton BtnClear = new JButton("Clear");
