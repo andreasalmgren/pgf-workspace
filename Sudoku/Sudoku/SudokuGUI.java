@@ -2,6 +2,7 @@ package Sudoku;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Arrays;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -31,9 +32,12 @@ public class SudokuGUI {
         // creating buttons and adding ActionListeners
         JButton BtnSolve = new JButton("Solve");
         BtnSolve.addActionListener(e -> {
+            //System.out.print(Arrays.toString(solver.board[0]));
             //System.out.println(solver.isAllValid());
             try {
                 getFields(solver, fields);
+                //if (solver.hasDuplicates(solver.board)) {
+                 //   JOptionPane.showMessageDialog(null, "This sudoku is unsolvable as a row contains two of the same numbers.");
                 if (!solver.solve(solver.board)) {
                     JOptionPane.showMessageDialog(null, "This sudoku is unsolvable. Please try another combination of numbers!");
                     //only accept numbers 1-9

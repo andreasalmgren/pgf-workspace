@@ -1,6 +1,7 @@
 package Sudoku;
 
 import javax.swing.*;
+import java.util.*;
 
 public class SudokuSolver implements InterfaceSudokuSolver {
 
@@ -17,6 +18,39 @@ public class SudokuSolver implements InterfaceSudokuSolver {
             {0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0}
     };
+
+    /*
+    public boolean hasDuplicates(int [][] inArray) {
+        boolean dup = false;
+        for (int k = 0; k < inArray[0].length; k++) { //loop through columns
+            for (int i = 0; i < inArray.length - 1; i++) {
+                for (int j = i; j < inArray.length; j++) {
+                    if (inArray[k][i] == inArray[k][j] && inArray[k][j] != 0 && inArray[k][i] != 0  ) {
+                        dup = true;
+                        break;
+                    }
+                }
+            }
+        }
+        return dup;
+    }
+
+     */
+/*
+    public boolean checkDuplicate(int[][] board) {
+        for (int[] ints : board) {
+            for (int k = 0; k < board.length - 2; k = k + 1) {
+                for (int j = 1 + k; j < ints.length; j = j + 1) {
+                    if (ints[k] == ints[j]) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+ */
 
 
     private boolean isNumInRow(int number, int row) {
