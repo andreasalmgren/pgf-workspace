@@ -7,7 +7,7 @@ public class SudokuSolver implements InterfaceSudokuSolver {
 
     private static final int gridSize = 9;
 
-    public int[][] board = {
+    public  int[][] board = {
             {1,2,3,0,0,0,0,0,0},
             {4,5,6,0,0,0,0,0,0},
             {0,0,0,7,0,0,0,0,0},
@@ -18,6 +18,7 @@ public class SudokuSolver implements InterfaceSudokuSolver {
             {0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0}
     };
+
 
     /*
     public boolean hasDuplicates(int [][] inArray) {
@@ -53,7 +54,7 @@ public class SudokuSolver implements InterfaceSudokuSolver {
  */
 
 
-    private boolean isNumInRow(int number, int row) {
+    public boolean isNumInRow(int number, int row) {
         for (int i = 0; i < gridSize; i++) {
             if (get(row, i) == number) {
                 return true;
@@ -62,7 +63,7 @@ public class SudokuSolver implements InterfaceSudokuSolver {
         return false;
     }
 
-    private boolean isNumInCol(int number, int column) {
+    public boolean isNumInCol(int number, int column) {
         for (int i = 0; i < gridSize; i++) {
             if (get(i, column) == number) {
                 return true;
@@ -71,7 +72,7 @@ public class SudokuSolver implements InterfaceSudokuSolver {
         return false;
     }
 
-    private boolean isNumInBox(int number, int row, int column) {
+    public boolean isNumInBox(int number, int row, int column) {
         int localBoxRow = row - row % 3; // räkna ut första raden i rutan
         int localBoxColumn = column - column % 3; // räkna ut första kolumnen
 
@@ -98,7 +99,7 @@ public class SudokuSolver implements InterfaceSudokuSolver {
             for (int col = 0; col < gridSize; col++) {
                 if (board[row][col] == 0) {
                     for (int numberToTry = 1; numberToTry <= gridSize; numberToTry++) {
-                        if (isValid(board, numberToTry, row, col)) {
+                        if (isValid(this.board, numberToTry, row, col)) {
                             add(row, col, numberToTry);
 
                             if (solve(board)) {
@@ -130,7 +131,7 @@ public class SudokuSolver implements InterfaceSudokuSolver {
 
     @Override
     public int get(int row, int col) {
-        checkArgs(row, col);
+        //checkArgs(row, col);
         return board[row][col];
     }
 

@@ -9,16 +9,16 @@ import org.junit.jupiter.api.Test;
 class SudokuSolverTests {
     private SudokuSolver sudoku;
     private final int[][] testBoard = {
-            {1,2,3,0,0,0,0,0,0},
-            {4,5,6,7,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0}
-    };
+            { 0, 0, 8, 0, 0, 9, 0, 6, 2 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 5 },
+            { 1, 0, 2, 5, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 2, 1, 0, 0, 9, 0 },
+            { 0, 5, 0, 0, 0, 0, 6, 0, 0 },
+            { 6, 0, 0, 0, 0, 0, 0, 2, 8 },
+            { 4, 1, 0, 6, 0, 8, 0, 0, 0 },
+            { 8, 6, 0, 0, 0, 0, 1, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 4, 0, 0 }
+            };
 
 
     @BeforeEach
@@ -32,18 +32,141 @@ class SudokuSolverTests {
         sudoku = null;
     }
 
-    /**
-     * Tests with an empty board
-     */
     @Test
     void testEmpty() {
-        //assertTrue(sudoku.solve());
+        assertTrue(sudoku.solve(sudoku.board));
     }
 
-    // Alla publika metoder testas
-    //Det finns jUnit-tester för olika
-    //fall av sudokun:
-           // • tomt sudoku
-           //• det lösbara sudokut i uppgiftstexten
-            // • olösliga sudokun
+    /**
+     * Tests with the predefined board that was given in the instructions
+     */
+
+    @Test
+    void testPredefinedBoard() {
+        sudoku.setMatrix(testBoard);
+        assertTrue(sudoku.solve(sudoku.board));
+    }
+
+    /**
+     * Tests with an unsolvable board, row is invalid
+     */
+
+    @Test
+    void testUnsolvableRow() {
+        sudoku.add(0, 0, 1);
+        sudoku.add(0, 3, 1);
+
+        assertTrue(sudoku.isNumInRow(1, 0));
+
+        //assertFalse(sudoku.solve(sudoku.board));
+    }
+
+    /**
+     * Tests with an unsolvable board, column is invalid
+     */
+
+    @Test
+    void testUnsolvableColumn() {
+        sudoku.add(0, 0, 1);
+        sudoku.add(1, 0, 1);
+
+        assertTrue(sudoku.isNumInCol(1, 0));
+    }
+
+    /**
+     * Tests with an unsolvable board, grid is invalid
+     */
+
+    @Test
+    void testUnsolvableGrid() {
+        sudoku.add(0, 0, 1);
+        sudoku.add(0, 1, 1);
+
+        assertFalse(sudoku.solve(sudoku.board));
+    }
+
+    /**
+     * Tests the public set & add methods
+     */
+
+    @Test
+    void testGetSetNumber() {
+        assertEquals(sudoku.get(0, 0), 0);
+        assertThrows(ArrayIndexOutOfBoundsException.class, () -> sudoku.get(10, 10), "Should throw error");
+
+        sudoku.add(0, 0, 1);
+
+        assertThrows(IllegalArgumentException.class, () -> sudoku.add(0, 0, 12), "Should throw error");
+        assertEquals(sudoku.get(0, 0), 1);
+
+    }
+
+    /**
+     * Tests the public method remove
+     */
+
+    @Test
+    void testClearNumber() {
+        sudoku.add(0, 0, 1);
+        assertEquals(sudoku.get(0, 0), 1);
+
+        sudoku.remove(0, 0);
+        assertEquals(sudoku.get(0, 0), 0);
+
+        assertThrows(IllegalArgumentException.class, () -> sudoku.remove(10, 10), "Should throw error");
+    }
+
+    /**
+     * Tests the public methods isValid and isAllValid
+     */
+
+    @Test
+    void testIsAllValid() {
+        sudoku.add(0, 0, 1);
+        sudoku.add(4, 1, 1);
+
+        assertFalse(sudoku.isValid(sudoku.board,0, 0, 1), "IsValid is not correct");
+
+        assertFalse(sudoku.solve(sudoku.board));
+        assertTrue(sudoku.isAllValid());
+
+        assertThrows(ArrayIndexOutOfBoundsException.class, () -> sudoku.isValid(sudoku.board,10, 10, 10), "Should throw error");
+    }
+
+    /**
+     * Tests the public method clearAll
+     */
+
+    @Test
+    void testClearAll() {
+        assertTrue(sudoku.solve(sudoku.board));
+
+        sudoku.clear();
+
+        for(int r = 0; r < 9; r++) {
+            for(int c = 0; c < 9; c++) {
+                assertEquals(sudoku.get(r, c), 0);
+            }
+        }
+    }
+
+    /**
+     * Tests the public method setMatrix
+     */
+
+    @Test
+    void testSetMatrix() {
+        sudoku.setMatrix(testBoard);
+        assertEquals(sudoku.get(2, 0), 1);
+        assertEquals(sudoku.get(0, 2), 8);
+    }
+
+    /**
+     * Tests the public method getMatrix
+     */
+
+    @Test
+    void testGetMatrix() {
+
+    }
 }

@@ -6,7 +6,6 @@ public interface InterfaceSudokuSolver {
      * Tries to solve the sudoku recursively
      * @return true if sudoku was solved
      */
-    //boolean solve();
     boolean solve(int[][] board);
 
     /**
